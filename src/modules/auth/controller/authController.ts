@@ -3,8 +3,6 @@ import logger from '../../../utils/logger';
 import { Request, Response } from 'express';
 
 import User from '../../../models/authModel';
-import BusinessStaff from '../../../models/businessStaffModel';
-import BusinessSetting from '../../../models/businessSettingModel';
 
 import {
   hashPassword,
