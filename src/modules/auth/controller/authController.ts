@@ -95,19 +95,6 @@ const registerUser = async (req: Request, res: Response) => {
       isActive: true,
     });
 
-    // TODO: Send email with otp
-
-    if (role === 'staff') {
-      await BusinessStaff.create({
-        business: businessId,
-        staff: newUser._id,
-      });
-    } else if (role === 'business') {
-      await BusinessSetting.create({
-        businessName,
-        business: newUser._id,
-      });
-    }
 
     return res.status(201).json({
       success: true,
