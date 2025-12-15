@@ -1,4 +1,5 @@
 import Exam from '../../../models/examModel';
+import mongoose from 'mongoose';
 import Board from '../../../models/boardModel';
 import { generateSlug } from '../../../utils/slug';
 import { ExamResponse } from '../types/examTypes';
@@ -75,7 +76,7 @@ const updateExam = async (id: string, boardId: string | undefined, name: string 
     }
 
     let updateData: any = {};
-    let newBoardId = exam.boardId;
+    let newBoardId: mongoose.Types.ObjectId | string = exam.boardId;
     let newName = exam.name;
 
     // If boardId is provided, validate it exists
@@ -88,8 +89,9 @@ const updateExam = async (id: string, boardId: string | undefined, name: string 
           message: 'Board not found',
         };
       }
-      newBoardId = boardId;
-      updateData.boardId = boardId;
+      const boardObjectId = new mongoose.Types.ObjectId(boardId);
+      newBoardId = boardObjectId;
+      updateData.boardId = boardObjectId;
       updateData.boardSlug = board.slug;
     }
 
