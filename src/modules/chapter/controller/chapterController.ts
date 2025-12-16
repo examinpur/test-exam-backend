@@ -5,9 +5,9 @@ import { validateChapter, validateChapterUpdate } from '../validation/chapterVal
 
 const createChapter = async (req: Request, res: Response) => {
   try {
-    const { boardId, examId, subjectId, name } = req.body;
+    const { boardId, examId, subjectId, chapterGroupId, name } = req.body;
 
-    const validation = validateChapter({ boardId, examId, subjectId, name });
+    const validation = validateChapter({ boardId, examId, subjectId, chapterGroupId, name });
     if (!validation.success) {
       return res.status(400).json({
         success: false,
@@ -17,7 +17,7 @@ const createChapter = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await chapterServices.createChapter(boardId, examId, subjectId, name);
+    const result = await chapterServices.createChapter(boardId, examId, subjectId, chapterGroupId, name);
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {
@@ -35,18 +35,18 @@ const createChapter = async (req: Request, res: Response) => {
 const updateChapter = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { boardId, examId, subjectId, name } = req.body;
+    const { boardId, examId, subjectId, chapterGroupId, name } = req.body;
 
     // At least one field should be provided
-    if (!boardId && !examId && !subjectId && !name) {
+    if (!boardId && !examId && !subjectId && !chapterGroupId && !name) {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: 'At least one field (boardId, examId, subjectId, or name) is required for update',
+        message: 'At least one field (boardId, examId, subjectId, chapterGroupId, or name) is required for update',
       });
     }
 
-    const validation = validateChapterUpdate({ boardId, examId, subjectId, name });
+    const validation = validateChapterUpdate({ boardId, examId, subjectId, chapterGroupId, name });
     if (!validation.success) {
       return res.status(400).json({
         success: false,
@@ -56,7 +56,7 @@ const updateChapter = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await chapterServices.updateChapter(id, boardId, examId, subjectId, name);
+    const result = await chapterServices.updateChapter(id, boardId, examId, subjectId, chapterGroupId, name);
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {
@@ -73,13 +73,13 @@ const updateChapter = async (req: Request, res: Response) => {
 
 const getChapters = async (req: Request, res: Response) => {
   try {
-    const { subjectId, slug } = req.query;
+    const { chapterGroupId, slug } = req.query;
 
     let result;
     if (slug) {
       result = await chapterServices.getChapterBySlug(slug as string);
-    } else if (subjectId) {
-      result = await chapterServices.getChaptersBySubjectId(subjectId as string);
+    } else if (chapterGroupId) {
+      result = await chapterServices.getChaptersByChapterGroupId(chapterGroupId as string);
     } else {
       result = await chapterServices.getAllChapters();
     }

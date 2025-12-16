@@ -1,6 +1,5 @@
 import Topic from '../../../models/topicModel';
 import Chapter from '../../../models/chapterModel';
-import Subject from '../../../models/subjectModel';
 import { generateSlug } from '../../../utils/slug';
 import { TopicResponse } from '../types/topicTypes';
 
@@ -8,11 +7,11 @@ const createTopic = async (
   boardId: string,
   examId: string,
   subjectId: string,
+  chapterGroupId: string,
   chapterId: string,
   name: string,
 ): Promise<TopicResponse> => {
   try {
-    // Validate chapter exists and get subject/exam/board info
     const chapter = await Chapter.findById(chapterId);
     if (!chapter) {
       return {
@@ -22,7 +21,14 @@ const createTopic = async (
       };
     }
 
-    // Verify chapter belongs to the subject, exam, and board
+    if (chapter.chapterGroupId.toString() !== chapterGroupId) {
+      return {
+        success: false,
+        statusCode: 400,
+        message: 'Chapter does not belong to the specified chapter group',
+      };
+    }
+
     if (chapter.subjectId.toString() !== subjectId) {
       return {
         success: false,
@@ -51,9 +57,9 @@ const createTopic = async (
     const boardSlug = chapter.boardSlug;
     const examSlug = chapter.examSlug;
     const subjectSlug = chapter.subjectSlug;
+    const chapterGroupSlug = chapter.chapterGroupSlug;
     const chapterSlug = chapter.slug;
 
-    // Check if topic with same slug already exists for this chapter
     const existingTopic = await Topic.findOne({ chapterId, slug: topicSlug });
     if (existingTopic) {
       return {
@@ -63,11 +69,9 @@ const createTopic = async (
       };
     }
 
-    // Create pathSlugs and pathKey
-    const pathSlugs = [boardSlug, examSlug, subjectSlug, chapterSlug, topicSlug];
-    const pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterSlug}/${topicSlug}`;
+    const pathSlugs = [boardSlug, examSlug, subjectSlug, chapterGroupSlug, chapterSlug, topicSlug];
+    const pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}/${topicSlug}`;
 
-    // Get the current max order for this chapter
     const maxOrderTopic = await Topic.findOne({ chapterId }).sort({ order: -1 });
     const nextOrder = maxOrderTopic ? (maxOrderTopic.order || 0) + 1 : 0;
 
@@ -75,6 +79,7 @@ const createTopic = async (
       boardId,
       examId,
       subjectId,
+      chapterGroupId,
       chapterId,
       name,
       slug: topicSlug,
@@ -83,6 +88,7 @@ const createTopic = async (
       boardSlug,
       examSlug,
       subjectSlug,
+      chapterGroupSlug,
       chapterSlug,
       pathSlugs,
       pathKey,
@@ -109,6 +115,7 @@ const updateTopic = async (
   boardId: string | undefined,
   examId: string | undefined,
   subjectId: string | undefined,
+  chapterGroupId: string | undefined,
   chapterId: string | undefined,
   name: string | undefined,
 ): Promise<TopicResponse> => {
@@ -126,10 +133,10 @@ const updateTopic = async (
     let newBoardId = topic.boardId.toString();
     let newExamId = topic.examId.toString();
     let newSubjectId = topic.subjectId.toString();
+    let newChapterGroupId = topic.chapterGroupId.toString();
     let newChapterId = topic.chapterId.toString();
     let newName = topic.name;
 
-    // If chapterId is provided, validate it exists
     if (chapterId) {
       const chapter = await Chapter.findById(chapterId);
       if (!chapter) {
@@ -140,7 +147,14 @@ const updateTopic = async (
         };
       }
 
-      // Verify relationships
+      if (chapterGroupId && chapter.chapterGroupId.toString() !== chapterGroupId) {
+        return {
+          success: false,
+          statusCode: 400,
+          message: 'Chapter does not belong to the specified chapter group',
+        };
+      }
+
       if (subjectId && chapter.subjectId.toString() !== subjectId) {
         return {
           success: false,
@@ -166,49 +180,36 @@ const updateTopic = async (
       }
 
       newChapterId = chapterId;
+      newChapterGroupId = chapter.chapterGroupId.toString();
       newSubjectId = chapter.subjectId.toString();
       newExamId = chapter.examId.toString();
       newBoardId = chapter.boardId.toString();
       updateData.chapterId = chapterId;
+      updateData.chapterGroupId = chapter.chapterGroupId;
       updateData.subjectId = chapter.subjectId;
       updateData.examId = chapter.examId;
       updateData.boardId = chapter.boardId;
-      updateData.chapterSlug = chapter.slug;
-      updateData.subjectSlug = chapter.subjectSlug;
-      updateData.examSlug = chapter.examSlug;
-      updateData.boardSlug = chapter.boardSlug;
-    } else if (subjectId || examId || boardId) {
-      // If only subjectId/examId/boardId is provided, get current chapter
-      const chapter = await Chapter.findById(topic.chapterId);
-      if (chapter) {
-        if (subjectId && chapter.subjectId.toString() !== subjectId) {
-          return {
-            success: false,
-            statusCode: 400,
-            message: 'Current chapter does not belong to the specified subject',
-          };
-        }
-        if (examId && chapter.examId.toString() !== examId) {
-          return {
-            success: false,
-            statusCode: 400,
-            message: 'Current chapter does not belong to the specified exam',
-          };
-        }
-        if (boardId && chapter.boardId.toString() !== boardId) {
-          return {
-            success: false,
-            statusCode: 400,
-            message: 'Current chapter does not belong to the specified board',
-          };
-        }
+    } else {
+      if (chapterGroupId) {
+        newChapterGroupId = chapterGroupId;
+        updateData.chapterGroupId = chapterGroupId;
+      }
+      if (subjectId) {
+        newSubjectId = subjectId;
+        updateData.subjectId = subjectId;
+      }
+      if (examId) {
+        newExamId = examId;
+        updateData.examId = examId;
+      }
+      if (boardId) {
+        newBoardId = boardId;
+        updateData.boardId = boardId;
       }
     }
 
-    // If name is provided, update slug and path fields
     if (name) {
       newName = name;
-      const topicSlug = generateSlug(name);
       const chapter = await Chapter.findById(newChapterId);
       if (!chapter) {
         return {
@@ -218,12 +219,13 @@ const updateTopic = async (
         };
       }
 
+      const topicSlug = generateSlug(name);
       const boardSlug = updateData.boardSlug || chapter.boardSlug;
       const examSlug = updateData.examSlug || chapter.examSlug;
       const subjectSlug = updateData.subjectSlug || chapter.subjectSlug;
+      const chapterGroupSlug = updateData.chapterGroupSlug || chapter.chapterGroupSlug;
       const chapterSlug = updateData.chapterSlug || chapter.slug;
 
-      // Check if another topic with same slug exists for this chapter
       const existingTopic = await Topic.findOne({
         chapterId: newChapterId,
         slug: topicSlug,
@@ -239,10 +241,14 @@ const updateTopic = async (
 
       updateData.name = name;
       updateData.slug = topicSlug;
-      updateData.pathSlugs = [boardSlug, examSlug, subjectSlug, chapterSlug, topicSlug];
-      updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterSlug}/${topicSlug}`;
-    } else if (chapterId || subjectId || examId || boardId) {
-      // If only chapterId/subjectId/examId/boardId is updated, we need to update path fields with existing slug
+      updateData.pathSlugs = [boardSlug, examSlug, subjectSlug, chapterGroupSlug, chapterSlug, topicSlug];
+      updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}/${topicSlug}`;
+      updateData.boardSlug = boardSlug;
+      updateData.examSlug = examSlug;
+      updateData.subjectSlug = subjectSlug;
+      updateData.chapterGroupSlug = chapterGroupSlug;
+      updateData.chapterSlug = chapterSlug;
+    } else if (chapterId || chapterGroupId || subjectId || examId || boardId) {
       const chapter = await Chapter.findById(newChapterId);
       if (!chapter) {
         return {
@@ -256,9 +262,15 @@ const updateTopic = async (
       const boardSlug = updateData.boardSlug || chapter.boardSlug;
       const examSlug = updateData.examSlug || chapter.examSlug;
       const subjectSlug = updateData.subjectSlug || chapter.subjectSlug;
+      const chapterGroupSlug = updateData.chapterGroupSlug || chapter.chapterGroupSlug;
       const chapterSlug = updateData.chapterSlug || chapter.slug;
-      updateData.pathSlugs = [boardSlug, examSlug, subjectSlug, chapterSlug, topicSlug];
-      updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterSlug}/${topicSlug}`;
+      updateData.pathSlugs = [boardSlug, examSlug, subjectSlug, chapterGroupSlug, chapterSlug, topicSlug];
+      updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}/${topicSlug}`;
+      updateData.boardSlug = boardSlug;
+      updateData.examSlug = examSlug;
+      updateData.subjectSlug = subjectSlug;
+      updateData.chapterGroupSlug = chapterGroupSlug;
+      updateData.chapterSlug = chapterSlug;
     }
 
     const updatedTopic = await Topic.findByIdAndUpdate(

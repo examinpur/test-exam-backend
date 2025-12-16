@@ -17,6 +17,11 @@ const topicSchema = new mongoose.Schema(
       ref: 'Subject',
       required: true,
     },
+    chapterGroupId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'ChapterGroup',
+      required: true,
+    },
     chapterId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Chapter',
@@ -50,6 +55,10 @@ const topicSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    chapterGroupSlug: {
+      type: String,
+      required: true,
+    },
     chapterSlug: {
       type: String,
       required: true,
@@ -72,7 +81,7 @@ const topicSchema = new mongoose.Schema(
 );
 
 topicSchema.index({ chapterId: 1, slug: 1 }, { unique: true });
-topicSchema.index({ chapterSlug: 1, subjectSlug: 1, examSlug: 1 });
+topicSchema.index({ chapterSlug: 1, chapterGroupSlug: 1, subjectSlug: 1, examSlug: 1 });
 
 export default mongoose.model('Topic', topicSchema);
 

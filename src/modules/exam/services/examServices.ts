@@ -1,5 +1,5 @@
-import Exam from '../../../models/examModel';
 import mongoose from 'mongoose';
+import Exam from '../../../models/examModel';
 import Board from '../../../models/boardModel';
 import { generateSlug } from '../../../utils/slug';
 import { ExamResponse } from '../types/examTypes';

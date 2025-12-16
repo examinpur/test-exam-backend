@@ -1,11 +1,9 @@
 import { Types } from 'mongoose';
 
-export type TopicData = {
+export type ChapterGroupData = {
   boardId: Types.ObjectId | string;
   examId: Types.ObjectId | string;
   subjectId: Types.ObjectId | string;
-  chapterGroupId: Types.ObjectId | string;
-  chapterId: Types.ObjectId | string;
   name: string;
   slug: string;
   order?: number;
@@ -13,16 +11,15 @@ export type TopicData = {
   boardSlug: string;
   examSlug: string;
   subjectSlug: string;
-  chapterGroupSlug: string;
-  chapterSlug: string;
   pathSlugs: string[];
   pathKey: string;
 };
 
-export type TopicResponse = {
+export type ChapterGroupResponse = {
   success: boolean;
   statusCode: number;
   message: string;
   data?: any;
   error?: any;
 };
+

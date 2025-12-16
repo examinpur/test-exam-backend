@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const chapterSchema = new mongoose.Schema(
+const paperSchema = new mongoose.Schema(
   {
     boardId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -12,16 +12,6 @@ const chapterSchema = new mongoose.Schema(
       ref: 'Exam',
       required: true,
     },
-    subjectId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Subject',
-      required: true,
-    },
-    chapterGroupId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'ChapterGroup',
-      required: true,
-    },
     name: {
       type: String,
       required: true,
@@ -30,9 +20,18 @@ const chapterSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    order: {
+    year: {
       type: Number,
-      default: 0,
+      required: true,
+      index: true,
+    },
+    paperNumber: {
+      type: Number,
+      default: 1,
+    },
+    shift: {
+      type: String,
+      default: '',
     },
     isActive: {
       type: Boolean,
@@ -46,14 +45,6 @@ const chapterSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    subjectSlug: {
-      type: String,
-      required: true,
-    },
-    chapterGroupSlug: {
-      type: String,
-      required: true,
-    },
     pathSlugs: {
       type: [String],
       required: true,
@@ -64,15 +55,23 @@ const chapterSchema = new mongoose.Schema(
       unique: true,
       index: true,
     },
+    questionPathKeys: {
+      type: [String],
+      default: [],
+    },
+    questionCount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
-    collection: 'chapters',
+    collection: 'papers',
   },
 );
 
-chapterSchema.index({ chapterGroupId: 1, slug: 1 }, { unique: true });
-chapterSchema.index({ chapterGroupSlug: 1, subjectSlug: 1, examSlug: 1 });
+paperSchema.index({ examId: 1, slug: 1 }, { unique: true });
+paperSchema.index({ examId: 1, year: -1 });
 
-export default mongoose.model('Chapter', chapterSchema);
+export default mongoose.model('Paper', paperSchema);
 

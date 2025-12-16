@@ -3,6 +3,8 @@ import logger from '../../../utils/logger';
 import { Request, Response } from 'express';
 
 import User from '../../../models/authModel';
+// import BusinessStaff from '../../../models/businessStaffModel';
+// import BusinessSetting from '../../../models/businessSettingModel';
 
 import {
   hashPassword,
@@ -95,6 +97,19 @@ const registerUser = async (req: Request, res: Response) => {
       isActive: true,
     });
 
+    // TODO: Send email with otp
+
+    // if (role === 'staff') {
+    //   await BusinessStaff.create({
+    //     business: businessId,
+    //     staff: newUser._id,
+    //   });
+    // } else if (role === 'business') {
+    //   await BusinessSetting.create({
+    //     businessName,
+    //     business: newUser._id,
+    //   });
+    // }
 
     return res.status(201).json({
       success: true,

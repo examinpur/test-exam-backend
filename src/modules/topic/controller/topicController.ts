@@ -5,9 +5,9 @@ import { validateTopic, validateTopicUpdate } from '../validation/topicValidator
 
 const createTopic = async (req: Request, res: Response) => {
   try {
-    const { boardId, examId, subjectId, chapterId, name } = req.body;
+    const { boardId, examId, subjectId, chapterGroupId, chapterId, name } = req.body;
 
-    const validation = validateTopic({ boardId, examId, subjectId, chapterId, name });
+    const validation = validateTopic({ boardId, examId, subjectId, chapterGroupId, chapterId, name });
     if (!validation.success) {
       return res.status(400).json({
         success: false,
@@ -17,7 +17,7 @@ const createTopic = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await topicServices.createTopic(boardId, examId, subjectId, chapterId, name);
+    const result = await topicServices.createTopic(boardId, examId, subjectId, chapterGroupId, chapterId, name);
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {
@@ -35,18 +35,17 @@ const createTopic = async (req: Request, res: Response) => {
 const updateTopic = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { boardId, examId, subjectId, chapterId, name } = req.body;
+    const { boardId, examId, subjectId, chapterGroupId, chapterId, name } = req.body;
 
-    // At least one field should be provided
-    if (!boardId && !examId && !subjectId && !chapterId && !name) {
+    if (!boardId && !examId && !subjectId && !chapterGroupId && !chapterId && !name) {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: 'At least one field (boardId, examId, subjectId, chapterId, or name) is required for update',
+        message: 'At least one field (boardId, examId, subjectId, chapterGroupId, chapterId, or name) is required for update',
       });
     }
 
-    const validation = validateTopicUpdate({ boardId, examId, subjectId, chapterId, name });
+    const validation = validateTopicUpdate({ boardId, examId, subjectId, chapterGroupId, chapterId, name });
     if (!validation.success) {
       return res.status(400).json({
         success: false,
@@ -56,7 +55,7 @@ const updateTopic = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await topicServices.updateTopic(id, boardId, examId, subjectId, chapterId, name);
+    const result = await topicServices.updateTopic(id, boardId, examId, subjectId, chapterGroupId, chapterId, name);
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const chapterSchema = new mongoose.Schema(
+const chapterGroupSchema = new mongoose.Schema(
   {
     boardId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,11 +15,6 @@ const chapterSchema = new mongoose.Schema(
     subjectId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Subject',
-      required: true,
-    },
-    chapterGroupId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'ChapterGroup',
       required: true,
     },
     name: {
@@ -50,10 +45,6 @@ const chapterSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    chapterGroupSlug: {
-      type: String,
-      required: true,
-    },
     pathSlugs: {
       type: [String],
       required: true,
@@ -67,12 +58,12 @@ const chapterSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'chapters',
+    collection: 'chapterGroups',
   },
 );
 
-chapterSchema.index({ chapterGroupId: 1, slug: 1 }, { unique: true });
-chapterSchema.index({ chapterGroupSlug: 1, subjectSlug: 1, examSlug: 1 });
+chapterGroupSchema.index({ subjectId: 1, slug: 1 }, { unique: true });
+chapterGroupSchema.index({ subjectSlug: 1, examSlug: 1 });
 
-export default mongoose.model('Chapter', chapterSchema);
+export default mongoose.model('ChapterGroup', chapterGroupSchema);
 

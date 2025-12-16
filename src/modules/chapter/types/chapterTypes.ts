@@ -1,9 +1,10 @@
 import { Types } from 'mongoose';
 
 export type ChapterData = {
-  boardId: Types.ObjectId;
-  examId: Types.ObjectId;
-  subjectId: Types.ObjectId;
+  boardId: Types.ObjectId | string;
+  examId: Types.ObjectId | string;
+  subjectId: Types.ObjectId | string;
+  chapterGroupId: Types.ObjectId | string;
   name: string;
   slug: string;
   order?: number;
@@ -11,6 +12,7 @@ export type ChapterData = {
   boardSlug: string;
   examSlug: string;
   subjectSlug: string;
+  chapterGroupSlug: string;
   pathSlugs: string[];
   pathKey: string;
 };
@@ -22,4 +24,3 @@ export type ChapterResponse = {
   data?: any;
   error?: any;
 };
-

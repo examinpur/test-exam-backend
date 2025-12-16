@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 
 export type ExamData = {
-  boardId: Types.ObjectId;
+  boardId: Types.ObjectId | string;
   name: string;
   slug: string;
   order?: number;

@@ -1,19 +1,21 @@
-import { Types } from 'mongoose';
-
-export type SubjectData = {
-  boardId: Types.ObjectId | string;
-  examId: Types.ObjectId | string;
+export type PaperData = {
+  boardId: string;
+  examId: string;
   name: string;
   slug: string;
-  order?: number;
+  year: number;
+  paperNumber?: number;
+  shift?: string;
   isActive?: boolean;
   boardSlug: string;
   examSlug: string;
   pathSlugs: string[];
   pathKey: string;
+  questionPathKeys?: string[];
+  questionCount?: number;
 };
 
-export type SubjectResponse = {
+export type PaperResponse = {
   success: boolean;
   statusCode: number;
   message: string;
