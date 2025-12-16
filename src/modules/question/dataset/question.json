@@ -1,0 +1,445 @@
+[
+    {
+        "_id": "Physics",
+        "title": "Physics",
+        "questions": [
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-001",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Two vectors $$\\vec{a}$$ and $$\\vec{b}$$ are perpendicular. If $$|\\vec{a}| = 3$$ and $$|\\vec{b}| = 4$$, then the magnitude of $$\\vec{a} + \\vec{b}$$ is",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "$$5$$"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "$$\\sqrt{7}$$"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "$$1$$"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "$$7$$"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "answer": null,
+                        "explanation": "$$|\\vec{a} + \\vec{b}| = \\sqrt{|\\vec{a}|^2 + |\\vec{b}|^2 + 2|\\vec{a}||\\vec{b}|\\cos\\theta}$$ with $$\\theta=90^\\circ$$ so $$=\\sqrt{3^2+4^2}=5$$."
+                    }
+                },
+                "permalink": "vec-a-plus-b-magnitude-phy-va-001.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Class 12 Physics Sample",
+                        "subTitle": "Vector Algebra • Physics",
+                        "excerpt": "Two vectors are perpendicular; find |a+b|."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-002",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If $$\\vec{a} = (1,2,3)$$ and $$\\vec{b} = (4,0,-1)$$, compute $$\\vec{a}\\cdot\\vec{b}$$.",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 1,
+                        "explanation": "$$\\vec{a}\\cdot\\vec{b} = 1\\cdot4 + 2\\cdot0 + 3\\cdot(-1) = 4 - 3 = 1$$"
+                    }
+                },
+                "permalink": "dot-product-phy-va-002.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Class 12 Physics Sample",
+                        "subTitle": "Vector Algebra • Physics",
+                        "excerpt": "Compute a·b for given vectors."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-003",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If $$\\vec{a}$$ and $$\\vec{b}$$ are perpendicular with magnitudes $$|\\vec{a}|=3$$ and $$|\\vec{b}|=4$$, then the magnitude $$|\\vec{a}\\times\\vec{b}|$$ equals",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "$$12$$"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "$$7$$"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "$$5$$"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "$$1$$"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "answer": null,
+                        "explanation": "$$|\\vec{a}\\times\\vec{b}| = |\\vec{a}||\\vec{b}|\\sin\\theta$$ with $$\\theta=90^\\circ$$ so $$=3\\times4=12$$."
+                    }
+                },
+                "permalink": "cross-product-phy-va-003.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Class 12 Physics Sample",
+                        "subTitle": "Vector Algebra • Physics",
+                        "excerpt": "Find magnitude of a×b when perpendicular."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-004",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If $$\\vec{a} = (2, -1, 3)$$, what is $$3\\vec{a}$$?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "$$(6,-3,9)$$"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "$$(2,-1,3)$$"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "$$(3, -1, 3)$$"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "$$(5, -2, 7)$$"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "answer": null,
+                        "explanation": "Scalar multiplication: multiply each component by 3 → $$(6,-3,9)$$."
+                    }
+                },
+                "permalink": "scalar-multiplication-phy-va-004.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Class 12 Physics Sample",
+                        "subTitle": "Vector Algebra • Physics",
+                        "excerpt": "Find 3a for given vector a."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-005",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If $$\\vec{a}=(1,0,1)$$ and $$\\vec{b}=(2,1,0)$$, then $$\\vec{a}+\\vec{b}$$ equals",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "$$(3,1,1)$$"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "$$(1,1,1)$$"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "$$(2,1,2)$$"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "$$(0,1,1)$$"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "answer": null,
+                        "explanation": "Add component-wise: $$(1+2,0+1,1+0)=(3,1,1)$$."
+                    }
+                },
+                "permalink": "vector-add-phy-va-005.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Class 12 Physics Sample",
+                        "subTitle": "Vector Algebra • Physics",
+                        "excerpt": "Find a+b for given component vectors."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-ok-001",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If $$\\vec{a}=(1,2,3)$$ and $$\\vec{b}=(2,1,0)$$, then $$\\vec{a}+\\vec{b}$$ equals",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "$$(3,3,3)$$"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "$$(1,3,3)$$"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "$$(2,2,3)$$"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "$$(3,2,3)$$"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Vector addition is component-wise: $$(1+2,2+1,3+0)=(3,3,3)$$."
+                    }
+                },
+                "permalink": "vec-add-ok-001.htm",
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-ok-002",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If $$\\vec{a}=(1,2,3)$$ and $$\\vec{b}=(3,0,1)$$, find $$\\vec{a}\\cdot\\vec{b}$$.",
+                        "answer": 6,
+                        "explanation": "$$\\vec{a}\\cdot\\vec{b}=1\\cdot3+2\\cdot0+3\\cdot1=6$$"
+                    }
+                },
+                "permalink": "dot-product-ok-002.htm",
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-bad-003",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "wrong-chapter-slug",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If $$|\\vec{a}|=3$$ and $$|\\vec{b}|=4$$ and $$\\vec{a}\\perp\\vec{b}$$, then $$|\\vec{a}+\\vec{b}|$$ is",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "$$5$$"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "$$7$$"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "$$1$$"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "$$12$$"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "$$|\\vec{a}+\\vec{b}|=\\sqrt{3^2+4^2}=5$$"
+                    }
+                },
+                "permalink": "vec-mag-bad-003.htm",
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "class12-physics-2025",
+                "yearKey": "class12-physics-2025"
+            }
+        ]
+    }
+]
