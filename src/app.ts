@@ -11,35 +11,6 @@ import topicRoutes from './modules/topic/routes/topicRoutes';
 import questionRoutes from './modules/question/routes/questionRoutes';
 import paperRoutes from './modules/paper/routes/paperRoutes';
 
-//test
-import { bulkCreateQuestionsFromJSON } from './modules/question/helper/bulkSaveQuestions';
-import questionJson from './modules/question/dataset/question.json';
-import path from 'path';
-import fs from 'fs';
-
-const datasetDir = path.resolve(process.cwd(), 'src/modules/question/dataset');
-
-const ensureDir = (dir: string) => {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-};
-
-(async () => {
-  ensureDir(datasetDir);
-
-  const result = await bulkCreateQuestionsFromJSON(
-    questionJson,
-    'question.json',
-    {
-      datasetDir,
-      boardSlugMap: { cbse: 'cbse' },
-      concurrency: 5,
-    },
-  );
-
-  console.log("Questions Uploaded Successfully");
-})();
-
-
 dbConnection();
 const app = express();
 

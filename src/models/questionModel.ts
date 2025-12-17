@@ -123,6 +123,10 @@ const questionSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Topic',
     },
+    paperRefId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Paper',
+    },
     boardSlug: {
       type: String,
       required: true,
@@ -204,9 +208,6 @@ const questionSchema = new mongoose.Schema(
     year: {
       type: Number,
       index: true,
-    },
-    paperTitle: {
-      type: String,
     },
     paperId: {
       type: String,

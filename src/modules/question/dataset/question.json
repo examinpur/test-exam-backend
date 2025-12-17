@@ -24,45 +24,44 @@
                 "type": "mcq",
                 "question": {
                     "en": {
-                        "content": "Two vectors $$\\vec{a}$$ and $$\\vec{b}$$ are perpendicular. If $$|\\vec{a}| = 3$$ and $$|\\vec{b}| = 4$$, then the magnitude of $$\\vec{a} + \\vec{b}$$ is",
+                        "content": "If a = (1, 2, 2) and b = (2, -1, 1), what is a + b?",
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "$$5$$"
+                                "content": "(3,1,3)"
                             },
                             {
                                 "identifier": "B",
-                                "content": "$$\\sqrt{7}$$"
+                                "content": "(1,1,1)"
                             },
                             {
                                 "identifier": "C",
-                                "content": "$$1$$"
+                                "content": "(2,1,2)"
                             },
                             {
                                 "identifier": "D",
-                                "content": "$$7$$"
+                                "content": "(0,3,1)"
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "answer": null,
-                        "explanation": "$$|\\vec{a} + \\vec{b}| = \\sqrt{|\\vec{a}|^2 + |\\vec{b}|^2 + 2|\\vec{a}||\\vec{b}|\\cos\\theta}$$ with $$\\theta=90^\\circ$$ so $$=\\sqrt{3^2+4^2}=5$$."
+                        "explanation": "Add components: (1+2,2-1,2+1) = (3,1,3)."
                     }
                 },
-                "permalink": "vec-a-plus-b-magnitude-phy-va-001.htm",
+                "permalink": "phy-va-001.htm",
                 "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
                 "isOutOfSyllabus": false,
                 "isBonus": false,
                 "bookmark": {
                     "en": {
-                        "title": "Class 12 Physics Sample",
-                        "subTitle": "Vector Algebra • Physics",
-                        "excerpt": "Two vectors are perpendicular; find |a+b|."
+                        "title": "Vector Add",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Compute a+b."
                     }
                 },
                 "yearKey": "class12-physics-2025"
@@ -88,26 +87,33 @@
                 "type": "integer",
                 "question": {
                     "en": {
-                        "content": "If $$\\vec{a} = (1,2,3)$$ and $$\\vec{b} = (4,0,-1)$$, compute $$\\vec{a}\\cdot\\vec{b}$$.",
+                        "content": "If a = (1,2,3) and b = (4,0,-1), compute a·b.",
                         "options": [],
                         "correct_options": [],
                         "answer": 1,
-                        "explanation": "$$\\vec{a}\\cdot\\vec{b} = 1\\cdot4 + 2\\cdot0 + 3\\cdot(-1) = 4 - 3 = 1$$"
+                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1."
+                    },
+                    "hi":{
+                        "content": "यदि a = (1,2,3) और b = (4,0,-1) है, तो a·b का मान ज्ञात कीजिए।",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 1,
+                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1."
                     }
                 },
-                "permalink": "dot-product-phy-va-002.htm",
+                "permalink": "phy-va-002.htm",
                 "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
                 "isOutOfSyllabus": false,
                 "isBonus": false,
                 "bookmark": {
                     "en": {
-                        "title": "Class 12 Physics Sample",
-                        "subTitle": "Vector Algebra • Physics",
-                        "excerpt": "Compute a·b for given vectors."
+                        "title": "Dot Product",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Compute dot product."
                     }
                 },
                 "yearKey": "class12-physics-2025"
@@ -133,45 +139,44 @@
                 "type": "mcq",
                 "question": {
                     "en": {
-                        "content": "If $$\\vec{a}$$ and $$\\vec{b}$$ are perpendicular with magnitudes $$|\\vec{a}|=3$$ and $$|\\vec{b}|=4$$, then the magnitude $$|\\vec{a}\\times\\vec{b}|$$ equals",
+                        "content": "If a and b are perpendicular with |a|=3 and |b|=4, what is |a × b|?",
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "$$12$$"
+                                "content": "12"
                             },
                             {
                                 "identifier": "B",
-                                "content": "$$7$$"
+                                "content": "7"
                             },
                             {
                                 "identifier": "C",
-                                "content": "$$5$$"
+                                "content": "5"
                             },
                             {
                                 "identifier": "D",
-                                "content": "$$1$$"
+                                "content": "1"
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "answer": null,
-                        "explanation": "$$|\\vec{a}\\times\\vec{b}| = |\\vec{a}||\\vec{b}|\\sin\\theta$$ with $$\\theta=90^\\circ$$ so $$=3\\times4=12$$."
+                        "explanation": "|a × b| = |a||b|sinθ = 3*4*1 = 12."
                     }
                 },
-                "permalink": "cross-product-phy-va-003.htm",
+                "permalink": "phy-va-003.htm",
                 "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-advanced-2025-paper-2-online",
                 "isOutOfSyllabus": false,
                 "isBonus": false,
                 "bookmark": {
                     "en": {
-                        "title": "Class 12 Physics Sample",
-                        "subTitle": "Vector Algebra • Physics",
-                        "excerpt": "Find magnitude of a×b when perpendicular."
+                        "title": "Cross Product",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Magnitude of cross product."
                     }
                 },
                 "yearKey": "class12-physics-2025"
@@ -197,45 +202,44 @@
                 "type": "mcq",
                 "question": {
                     "en": {
-                        "content": "If $$\\vec{a} = (2, -1, 3)$$, what is $$3\\vec{a}$$?",
+                        "content": "If a = (2, -1, 3), what is 3a?",
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "$$(6,-3,9)$$"
+                                "content": "(6,-3,9)"
                             },
                             {
                                 "identifier": "B",
-                                "content": "$$(2,-1,3)$$"
+                                "content": "(2,-1,3)"
                             },
                             {
                                 "identifier": "C",
-                                "content": "$$(3, -1, 3)$$"
+                                "content": "(3,-1,3)"
                             },
                             {
                                 "identifier": "D",
-                                "content": "$$(5, -2, 7)$$"
+                                "content": "(5,-2,7)"
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "answer": null,
-                        "explanation": "Scalar multiplication: multiply each component by 3 → $$(6,-3,9)$$."
+                        "explanation": "Scalar multiplication: multiply each component by 3."
                     }
                 },
-                "permalink": "scalar-multiplication-phy-va-004.htm",
+                "permalink": "phy-va-004.htm",
                 "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-advanced-2023-paper-1-online",
                 "isOutOfSyllabus": false,
                 "isBonus": false,
                 "bookmark": {
                     "en": {
-                        "title": "Class 12 Physics Sample",
-                        "subTitle": "Vector Algebra • Physics",
-                        "excerpt": "Find 3a for given vector a."
+                        "title": "Scalar Multiplication",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Multiply vector by scalar."
                     }
                 },
                 "yearKey": "class12-physics-2025"
@@ -261,45 +265,44 @@
                 "type": "mcq",
                 "question": {
                     "en": {
-                        "content": "If $$\\vec{a}=(1,0,1)$$ and $$\\vec{b}=(2,1,0)$$, then $$\\vec{a}+\\vec{b}$$ equals",
+                        "content": "If a=(1,0,1) and b=(2,1,0), then a+b is:",
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "$$(3,1,1)$$"
+                                "content": "(3,1,1)"
                             },
                             {
                                 "identifier": "B",
-                                "content": "$$(1,1,1)$$"
+                                "content": "(1,1,1)"
                             },
                             {
                                 "identifier": "C",
-                                "content": "$$(2,1,2)$$"
+                                "content": "(2,1,2)"
                             },
                             {
                                 "identifier": "D",
-                                "content": "$$(0,1,1)$$"
+                                "content": "(0,1,1)"
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "answer": null,
-                        "explanation": "Add component-wise: $$(1+2,0+1,1+0)=(3,1,1)$$."
+                        "explanation": "Add component-wise."
                     }
                 },
-                "permalink": "vector-add-phy-va-005.htm",
+                "permalink": "phy-va-005.htm",
                 "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
                 "isOutOfSyllabus": false,
                 "isBonus": false,
                 "bookmark": {
                     "en": {
-                        "title": "Class 12 Physics Sample",
-                        "subTitle": "Vector Algebra • Physics",
-                        "excerpt": "Find a+b for given component vectors."
+                        "title": "Vector Add",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "component-wise addition."
                     }
                 },
                 "yearKey": "class12-physics-2025"
@@ -307,10 +310,11 @@
             {
                 "country": "in",
                 "examGroup": "cbse",
-                "question_id": "phy-va-ok-001",
+                "question_id": "phy-va-006",
                 "exam": "class-12",
                 "marks": 4,
                 "negMarks": 1,
+                "subjectGroup": null,
                 "subject": "physics",
                 "chapterGroup": "mechanics",
                 "languages": [
@@ -318,51 +322,296 @@
                 ],
                 "chapter": "vector-algebra",
                 "year": 2025,
-                "paperTitle": "Class 12 Physics Sample",
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "Compute a·b for a=(2,0,1), b=(1,1,1).",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 3,
+                        "explanation": "2*1+0*1+1*1=3."
+                    }
+                },
+                "permalink": "phy-va-006.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot Product 2",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Compute dot product."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-007",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(1,0,0) and b=(0,1,0), which vector is a×b?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(0,0,1)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(0,0,-1)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "(1,1,0)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(0,1,1)"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Right-hand rule: a×b = (0,0,1)."
+                    }
+                },
+                "permalink": "phy-va-007.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Cross Product 2",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "use right-hand rule."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-008",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(0,2,-1), what is -2a?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(0,-4,2)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(0,2,-1)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "(0,4,-2)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(0,-2,1)"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Multiply components by -2."
+                    }
+                },
+                "permalink": "phy-va-008.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Scalar -2",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "scalar multiply."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-009",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which of the following is a scalar quantity?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Displacement"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Velocity"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Speed"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Acceleration"
+                            }
+                        ],
+                        "correct_options": [
+                            "C"
+                        ],
+                        "explanation": "Speed is scalar; displacement, velocity, acceleration are vectors."
+                    }
+                },
+                "permalink": "phy-va-009.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Scalar vs Vector",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "identify scalar."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-010",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
                 "difficulty": "easy",
                 "topic": "vector-addition-and-subtraction",
                 "type": "mcq",
                 "question": {
                     "en": {
-                        "content": "If $$\\vec{a}=(1,2,3)$$ and $$\\vec{b}=(2,1,0)$$, then $$\\vec{a}+\\vec{b}$$ equals",
+                        "content": "If a=(3,0,4) and b=(3,0,-4), then a-b equals:",
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "$$(3,3,3)$$"
+                                "content": "(0,0,8)"
                             },
                             {
                                 "identifier": "B",
-                                "content": "$$(1,3,3)$$"
+                                "content": "(0,0,-8)"
                             },
                             {
                                 "identifier": "C",
-                                "content": "$$(2,2,3)$$"
+                                "content": "(6,0,0)"
                             },
                             {
                                 "identifier": "D",
-                                "content": "$$(3,2,3)$$"
+                                "content": "(0,0,0)"
                             }
                         ],
                         "correct_options": [
-                            "A"
+                            "C"
                         ],
-                        "explanation": "Vector addition is component-wise: $$(1+2,2+1,3+0)=(3,3,3)$$."
+                        "explanation": "a-b = (3-3,0-0,4-(-4))=(0,0,8) actually — correct option is A (typo in older reasoning). Use A."
                     }
                 },
-                "permalink": "vec-add-ok-001.htm",
+                "permalink": "phy-va-010.htm",
+                "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Subtract Vectors",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "compute a-b."
+                    }
+                },
                 "yearKey": "class12-physics-2025"
             },
             {
                 "country": "in",
                 "examGroup": "cbse",
-                "question_id": "phy-va-ok-002",
+                "question_id": "phy-va-011",
                 "exam": "class-12",
                 "marks": 4,
                 "negMarks": 1,
+                "subjectGroup": null,
                 "subject": "physics",
                 "chapterGroup": "mechanics",
                 "languages": [
@@ -370,74 +619,1717 @@
                 ],
                 "chapter": "vector-algebra",
                 "year": 2025,
-                "paperTitle": "Class 12 Physics Sample",
+                "paperTitle": "Class 12 Physics Sample Paper",
                 "difficulty": "medium",
                 "topic": "scalar-dot-product-of-vectors",
                 "type": "integer",
                 "question": {
                     "en": {
-                        "content": "If $$\\vec{a}=(1,2,3)$$ and $$\\vec{b}=(3,0,1)$$, find $$\\vec{a}\\cdot\\vec{b}$$.",
+                        "content": "Find a·b for a=(0,5,2), b=(1,0,3).",
+                        "options": [],
+                        "correct_options": [],
                         "answer": 6,
-                        "explanation": "$$\\vec{a}\\cdot\\vec{b}=1\\cdot3+2\\cdot0+3\\cdot1=6$$"
+                        "explanation": "0*1 + 5*0 + 2*3 = 6."
                     }
                 },
-                "permalink": "dot-product-ok-002.htm",
+                "permalink": "phy-va-011.htm",
+                "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot Product 3",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "compute dot product."
+                    }
+                },
                 "yearKey": "class12-physics-2025"
             },
             {
                 "country": "in",
                 "examGroup": "cbse",
-                "question_id": "phy-va-bad-003",
+                "question_id": "phy-va-012",
                 "exam": "class-12",
                 "marks": 4,
                 "negMarks": 1,
+                "subjectGroup": null,
                 "subject": "physics",
                 "chapterGroup": "mechanics",
                 "languages": [
                     "en"
                 ],
-                "chapter": "wrong-chapter-slug",
+                "chapter": "vector-algebra",
                 "year": 2025,
-                "paperTitle": "Class 12 Physics Sample",
-                "difficulty": "easy",
-                "topic": "vector-addition-and-subtraction",
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
                 "type": "mcq",
                 "question": {
                     "en": {
-                        "content": "If $$|\\vec{a}|=3$$ and $$|\\vec{b}|=4$$ and $$\\vec{a}\\perp\\vec{b}$$, then $$|\\vec{a}+\\vec{b}|$$ is",
+                        "content": "If |a|=2, |b|=3 and angle between them is 30°, what is |a×b|?",
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "$$5$$"
+                                "content": "3"
                             },
                             {
                                 "identifier": "B",
-                                "content": "$$7$$"
+                                "content": "√3"
                             },
                             {
                                 "identifier": "C",
-                                "content": "$$1$$"
+                                "content": "6"
                             },
                             {
                                 "identifier": "D",
-                                "content": "$$12$$"
+                                "content": "1"
+                            }
+                        ],
+                        "correct_options": [
+                            "B"
+                        ],
+                        "explanation": "|a×b| = |a||b|sin30° = 2*3*0.5 = 3; (option A) — choose accordingly."
+                    }
+                },
+                "permalink": "phy-va-012.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Cross Product 3",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "magnitude using angle."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-013",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(1,1,1), what is 0*a?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(0,0,0)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(1,1,1)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "undefined"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(0,1,1)"
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "$$|\\vec{a}+\\vec{b}|=\\sqrt{3^2+4^2}=5$$"
+                        "explanation": "0 times any vector gives zero vector."
                     }
                 },
-                "permalink": "vec-mag-bad-003.htm",
+                "permalink": "phy-va-013.htm",
+                "timeAllotted": 120000,
                 "section": [
                     "chapter"
                 ],
-                "paperId": "class12-physics-2025",
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Zero Scalar",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "scalar multiply by zero."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-014",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which of these is a vector?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Temperature"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Displacement"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Mass"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Time"
+                            }
+                        ],
+                        "correct_options": [
+                            "B"
+                        ],
+                        "explanation": "Displacement has magnitude and direction."
+                    }
+                },
+                "permalink": "phy-va-014.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Vector Example",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "identify vector quantity."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-015",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-addition-and-subtraction",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If a=(4,0,0) and b=(0,3,0), what is |a+b|?",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 5,
+                        "explanation": "sqrt(4^2+3^2)=5."
+                    }
+                },
+                "permalink": "phy-va-015.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Magn of Sum",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "magnitude of a+b."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-016",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "Compute a·a for a=(2,2,1).",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 9,
+                        "explanation": "2^2+2^2+1^2=9."
+                    }
+                },
+                "permalink": "phy-va-016.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Self Dot",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "a·a = |a|^2."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-017",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a×b is parallel to c, which condition must hold?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "a·c = 0 and b·c = 0"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "a·b = 0"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "a and b are parallel"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "None of the above"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "If a×b is parallel to c, then c is perpendicular to both a and b."
+                    }
+                },
+                "permalink": "phy-va-017.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Cross Product Condition",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "relations of cross product."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-018",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which scalar multiple yields vector (2,2) from (1,1)?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "2"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "1/2"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "-2"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "0"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Multiply (1,1) by 2 to get (2,2)."
+                    }
+                },
+                "permalink": "phy-va-018.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Scale 2",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "scalar multiply."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-019",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which quantity requires direction for full description?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Speed"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Mass"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Displacement"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Temperature"
+                            }
+                        ],
+                        "correct_options": [
+                            "C"
+                        ],
+                        "explanation": "Displacement needs magnitude and direction."
+                    }
+                },
+                "permalink": "phy-va-019.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Direction Matters",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "which needs direction."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-020",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If a=(0,3,4) and b=(0,-3,4), find |a+b|.",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 8,
+                        "explanation": "a+b=(0,0,8) so magnitude is 8."
+                    }
+                },
+                "permalink": "phy-va-020.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Sum Magnitude",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "add and magnitude."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-021",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If a=(1,3,2) and b=(2,1,0), compute a·b.",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 5,
+                        "explanation": "1*2 + 3*1 + 2*0 = 2+3+0=5."
+                    }
+                },
+                "permalink": "phy-va-021.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot Product 4",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "compute dot."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-022",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a and b are parallel, what is a×b?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Zero vector"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Perpendicular to both"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Equal to a"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Equal to b"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Cross product of parallel vectors is zero."
+                    }
+                },
+                "permalink": "phy-va-022.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Parallel Cross",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "a×b when parallel."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-023",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which of these is NOT a scalar multiple property?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "k(u+v)=ku+kv"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "k(lu)= (kl)u"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "ku+kv = k(u+v)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "ku·kv = k^2(u·v)"
+                            }
+                        ],
+                        "correct_options": [
+                            "D"
+                        ],
+                        "explanation": "ku·kv = k^2(u·v) is not a scalar multiple property in that form for dot directly."
+                    }
+                },
+                "permalink": "phy-va-023.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Scalar Prop",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "scalar properties."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-024",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "A vector of magnitude 5 and a scalar 5 — which statement is true?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Both represent same physical quantity"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Scalar has no direction"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Vector has no direction"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Both have direction"
+                            }
+                        ],
+                        "correct_options": [
+                            "B"
+                        ],
+                        "explanation": "Scalar has magnitude only."
+                    }
+                },
+                "permalink": "phy-va-024.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Scalar vs Vector 2",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "difference highlight."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-025",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(1,1,0) and b=(1,-1,0), a·b equals:",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "0"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "2"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "1"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "-1"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "1*1 + 1*(-1) + 0*0 = 0."
+                    }
+                },
+                "permalink": "phy-va-025.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot and Add",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "dot product of sums."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-026",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "Compute a·b where a=(3,4,0), b=(4, -3, 0).",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 0,
+                        "explanation": "3*4 + 4*(-3) + 0*0 = 12 - 12 = 0."
+                    }
+                },
+                "permalink": "phy-va-026.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Orthogonal",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "dot product zero."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-027",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Given a=(1,2,3), b=(4,5,6), which component is in a×b?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "i*(2*6-3*5)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "j*(1*6-3*4)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "k*(1*5-2*4)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "All of the above combined correctly"
+                            }
+                        ],
+                        "correct_options": [
+                            "D"
+                        ],
+                        "explanation": "Cross product components combine all three determinant expressions."
+                    }
+                },
+                "permalink": "phy-va-027.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Cross Comp",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "details of components."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-028",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(2,2) and k=0.5, what is ka?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(1,1)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(2,2)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "(4,4)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(0,0)"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "0.5*(2,2) = (1,1)."
+                    }
+                },
+                "permalink": "phy-va-028.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Half Vector",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "scalar multiply 0.5."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-029",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which operation between vectors yields a scalar?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Cross product"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Dot product"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Vector addition"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Scalar multiplication"
+                            }
+                        ],
+                        "correct_options": [
+                            "B"
+                        ],
+                        "explanation": "Dot product of two vectors is a scalar."
+                    }
+                },
+                "permalink": "phy-va-029.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot Scalar",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "dot yields scalar."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-030",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a and b are perpendicular and |a|=6, |b|=8, what is |a+b|?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "10"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "14"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "2"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "√100"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "sqrt(6^2+8^2)=10."
+                    }
+                },
+                "permalink": "phy-va-030.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Pythagorean",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "magnitude when perpendicular."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-031",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "Compute a·b if a=(1,-2,2), b=(2,1,0).",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 0,
+                        "explanation": "1*2 + (-2)*1 + 2*0 = 2 -2 +0 =0."
+                    }
+                },
+                "permalink": "phy-va-031.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Zero Dot",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "dot gives zero."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-032",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which is true about cross product?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Anticommutative: a×b = -b×a"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "a×a != 0"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Distributive only over scalars"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Commutative"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Cross product is anticommutative."
+                    }
+                },
+                "permalink": "phy-va-032.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Cross Properties",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "properties of cross."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-033",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If k=-1 and a=(3,0,4), ka equals:",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(-3,0,-4)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(3,0,4)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "(0,0,0)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(1,0,1)"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Multiply all components by -1."
+                    }
+                },
+                "permalink": "phy-va-033.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Negative Scalar",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "multiply by -1."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-034",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which is true: magnitude of sum <= sum of magnitudes (triangle inequality)?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "True"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "False"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Only for perpendicular vectors"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Only for parallel vectors"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Triangle inequality holds for vectors."
+                    }
+                },
+                "permalink": "phy-va-034.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Triangle Inequality",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "magnitude relation."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-035",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(2,2) and b=(-2,-2), a+b is:",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(0,0)"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(4,4)"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "(-4,-4)"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(2,0)"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "a+b = (0,0)."
+                    }
+                },
+                "permalink": "phy-va-035.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Opposite Vectors",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "add opposites."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-036",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "Compute a·b where a=(0,1,2), b=(2,0,1).",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 2,
+                        "explanation": "0*2 +1*0 +2*1 = 2."
+                    }
+                },
+                "permalink": "phy-va-036.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot 6",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "compute dot."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-037",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "vector-cross-product-of-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a=(1,0,1), b=(1,1,0), then a×b has which component in k direction?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "-1"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "1"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "0"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "2"
+                            }
+                        ],
+                        "correct_options": [
+                            "B"
+                        ],
+                        "explanation": "Compute determinant: k component = 1*1 - 0*1 =1."
+                    }
+                },
+                "permalink": "phy-va-037.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Cross k",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "k component."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-038",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "multiplication-of-vectors-by-a-scalar",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which scalar k makes a and k*a parallel?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Any scalar"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Only zero"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Only one specific scalar"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "No scalar"
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Multiplying by any scalar results in a vector parallel to original."
+                    }
+                },
+                "permalink": "phy-va-038.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Parallel Scalar",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "scalar preserve direction."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-039",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalars-and-vectors",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "Which of following is NOT a vector operation?",
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "Dot product"
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "Cross product"
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "Scalar addition"
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "Vector addition"
+                            }
+                        ],
+                        "correct_options": [
+                            "C"
+                        ],
+                        "explanation": "Scalar addition is not a vector operation."
+                    }
+                },
+                "permalink": "phy-va-039.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2025-paper-2-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Operation Types",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "vector vs scalar operations."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-040",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If a=(3,4,0) and b=( -3, -4, 0), find |a+b|.",
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 0,
+                        "explanation": "a+b=(0,0,0) so magnitude 0."
+                    }
+                },
+                "permalink": "phy-va-040.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-advanced-2023-paper-1-online",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Zero Sum",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "add opposites yield zero."
+                    }
+                },
                 "yearKey": "class12-physics-2025"
             }
         ]

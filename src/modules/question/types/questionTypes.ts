@@ -7,6 +7,7 @@ export type QuestionData = {
   chapterGroupId: Types.ObjectId | string;
   chapterId: Types.ObjectId | string;
   topicId?: Types.ObjectId | string;
+  paperRefId?: Types.ObjectId | string;
   comprehensionId?: Types.ObjectId | string;
   comprehensionOrder?: number;
   slug: string;
@@ -21,7 +22,6 @@ export type QuestionData = {
   prompt?: any;
   correct?: any;
   year?: number;
-  paperTitle?: string;
   paperId?: string;
   yearKey?: string;
   section?: string[];
