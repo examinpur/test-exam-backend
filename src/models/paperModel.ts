@@ -1,5 +1,28 @@
 import mongoose from 'mongoose';
 
+const examScheduleSchema = new mongoose.Schema(
+  {
+    date: {
+      type: Date,
+      required: true,
+      index: true,
+    },
+    startTime: {
+      type: String, // "09:00"
+      required: true,
+    },
+    endTime: {
+      type: String, // "12:00"
+      required: true,
+    },
+    timezone: {
+      type: String,
+      default: 'Asia/Kolkata',
+    },
+  },
+  { _id: false },
+);
+
 const paperSchema = new mongoose.Schema(
   {
     boardId: {
@@ -63,6 +86,11 @@ const paperSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    // newly added
+    examSchedule: {
+      type: examScheduleSchema,
+      // required: true,
+    },    
   },
   {
     timestamps: true,

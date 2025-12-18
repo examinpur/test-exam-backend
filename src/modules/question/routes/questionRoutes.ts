@@ -1,11 +1,18 @@
 import { Router } from 'express';
 import questionController from '../controller/questionController';
+import questionFileUpload from '../helper/questionFileUpload';
 
 const router = Router();
 
 router.post(
   '/',
   questionController.createQuestion,
+);
+
+router.post(
+  '/bulk',
+  questionFileUpload.single('file'),
+  questionController.bulkCreateQuestion,
 );
 
 router.put(
