@@ -4,6 +4,7 @@ import questionServices from '../services/questionServices';
 import { validateQuestion, validateQuestionUpdate } from '../validation/questionValidator';
 import { bulkCreateQuestions } from '../helper/bulkSaveQuestions';
 import { parseQuestionFile, cleanupFile } from '../helper/parseQuestionFile';
+import { importQuestionsFromFile } from '../helper/importQuestionsFromFile';
 
 const createQuestion = async (req: Request, res: Response) => {
   try {
@@ -189,6 +190,46 @@ const bulkCreateQuestion = async (req: Request, res: Response) => {
   }
 };
 
+const importQuestionsFromDataset = async (req: Request, res: Response) => {
+  let filePath: string | undefined;
+
+  try {
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).json({
+        success: false,
+        statusCode: 400,
+        message: 'No file uploaded. Please upload a JSON file with question dataset.',
+      });
+    }
+
+    filePath = file.path;
+
+    const result = await importQuestionsFromFile(filePath);
+
+    cleanupFile(filePath);
+
+    return res.status(200).json({
+      success: true,
+      statusCode: 200,
+      message: `Import completed. Created: ${result.created}, Failed: ${result.failed}, Skipped: ${result.skipped}`,
+      data: result,
+    });
+  } catch (error: any) {
+    if (filePath) cleanupFile(filePath);
+
+    logger.error(`Error occurred in importQuestionsFromDataset controller: ${error?.message || error?.response?.error?.message || error?.response?.error || error}`);
+
+    return res.status(500).json({
+      success: false,
+      statusCode: 500,
+      message: 'Internal server error',
+      error: error?.message || error,
+    });
+  }
+};
+
 const questionController = {
   createQuestion,
   updateQuestion,
@@ -196,6 +237,7 @@ const questionController = {
   getQuestion,
   deleteQuestion,
   bulkCreateQuestion,
+  importQuestionsFromDataset,
 };
 
 export default questionController;

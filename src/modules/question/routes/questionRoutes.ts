@@ -15,6 +15,12 @@ router.post(
   questionController.bulkCreateQuestion,
 );
 
+router.post(
+  '/import-dataset',
+  questionFileUpload.single('file'),
+  questionController.importQuestionsFromDataset,
+);
+
 router.put(
   '/:id',
   questionController.updateQuestion,
