@@ -237,3 +237,27 @@
 {"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-18 19:21:31"}
 {"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-18 19:28:07"}
 {"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-18 19:28:08"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-18 19:28:42"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-18 19:28:43"}
+{"level":"info","message":"Created exam: JEE MAIN (jee-main)","timestamp":"2025-12-18 19:28:56"}
+{"level":"info","message":"Created subject: Physics (physics)","timestamp":"2025-12-18 19:28:56"}
+{"level":"info","message":"Created chapter group: Physics Chapters (physics-chapters)","timestamp":"2025-12-18 19:28:56"}
+{"level":"info","message":"Created chapter: Vector Algebra (vector-algebra)","timestamp":"2025-12-18 19:28:56"}
+{"level":"info","message":"Created topic: Vector Addition and Subtraction (vector-addition-and-subtraction)","timestamp":"2025-12-18 19:28:56"}
+{"level":"info","message":"Created board: NEET (neet)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created exam: NEET (neet)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created subject: Physics (physics)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created chapter group: Physics Chapters (physics-chapters)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created chapter: Vector Algebra (vector-algebra)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created topic: Vector Addition and Subtraction (vector-addition-and-subtraction)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created exam: JEE ADVANCED (jee-advanced)","timestamp":"2025-12-18 19:28:57"}
+{"level":"info","message":"Created subject: Physics (physics)","timestamp":"2025-12-18 19:28:58"}
+{"level":"info","message":"Created chapter group: Physics Chapters (physics-chapters)","timestamp":"2025-12-18 19:28:58"}
+{"level":"info","message":"Created chapter: Vector Algebra (vector-algebra)","timestamp":"2025-12-18 19:28:58"}
+{"level":"info","message":"Created topic: Vector Cross Product (vector-cross-product)","timestamp":"2025-12-18 19:28:58"}
+{"level":"info","message":"Created chapter: Motion in One Dimension (motion-in-one-dimension)","timestamp":"2025-12-18 19:28:58"}
+{"level":"info","message":"Created topic: Scalars and Vectors (scalars-and-vectors)","timestamp":"2025-12-18 19:28:58"}
+{"level":"info","message":"Created subject: Mathematics (mathematics)","timestamp":"2025-12-18 19:28:59"}
+{"level":"info","message":"Created chapter group: Mathematics Chapters (mathematics-chapters)","timestamp":"2025-12-18 19:28:59"}
+{"level":"info","message":"Created chapter: Vectors (vectors)","timestamp":"2025-12-18 19:28:59"}
+{"level":"info","message":"Created topic: Scalar Multiplication (scalar-multiplication)","timestamp":"2025-12-18 19:28:59"}
