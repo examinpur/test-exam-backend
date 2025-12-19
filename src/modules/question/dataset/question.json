@@ -25,28 +25,34 @@
                 "question": {
                     "en": {
                         "content": "If a = (1, 2, 2) and b = (2, -1, 1), what is a + b?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee","ff8f185d15f6","ff81f5f30765","ff89bae43379"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "(3,1,3)"
+                                "content": "(3,1,3)",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "(1,1,1)"
+                                "content": "(1,1,1)",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "(2,1,2)"
+                                "content": "(2,1,2)",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "(0,3,1)"
+                                "content": "(0,3,1)",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "Add components: (1+2,2-1,2+1) = (3,1,3)."
+                        "explanation": "Add components: (1+2,2-1,2+1) = (3,1,3).",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-001.htm",
@@ -88,17 +94,21 @@
                 "question": {
                     "en": {
                         "content": "If a = (1,2,3) and b = (4,0,-1), compute a·b.",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
                         "options": [],
                         "correct_options": [],
                         "answer": 1,
-                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1."
+                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     },
                     "hi":{
                         "content": "यदि a = (1,2,3) और b = (4,0,-1) है, तो a·b का मान ज्ञात कीजिए।",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
                         "options": [],
                         "correct_options": [],
                         "answer": 1,
-                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1."
+                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-002.htm",
@@ -140,28 +150,34 @@
                 "question": {
                     "en": {
                         "content": "If a and b are perpendicular with |a|=3 and |b|=4, what is |a × b|?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee","ff8f185d15f6"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "12"
+                                "content": "12",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "7"
+                                "content": "7",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "5"
+                                "content": "5",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "1"
+                                "content": "1",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "|a × b| = |a||b|sinθ = 3*4*1 = 12."
+                        "explanation": "|a × b| = |a||b|sinθ = 3*4*1 = 12.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-003.htm",
@@ -203,28 +219,34 @@
                 "question": {
                     "en": {
                         "content": "If a = (2, -1, 3), what is 3a?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "(6,-3,9)"
+                                "content": "(6,-3,9)",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "(2,-1,3)"
+                                "content": "(2,-1,3)",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "(3,-1,3)"
+                                "content": "(3,-1,3)",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "(5,-2,7)"
+                                "content": "(5,-2,7)",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "Scalar multiplication: multiply each component by 3."
+                        "explanation": "Scalar multiplication: multiply each component by 3.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-004.htm",
@@ -266,28 +288,34 @@
                 "question": {
                     "en": {
                         "content": "If a=(1,0,1) and b=(2,1,0), then a+b is:",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee","ff8f185d15f6"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "(3,1,1)"
+                                "content": "(3,1,1)",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "(1,1,1)"
+                                "content": "(1,1,1)",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "(2,1,2)"
+                                "content": "(2,1,2)",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "(0,1,1)"
+                                "content": "(0,1,1)",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "Add component-wise."
+                        "explanation": "Add component-wise.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-005.htm",
@@ -329,10 +357,12 @@
                 "question": {
                     "en": {
                         "content": "Compute a·b for a=(2,0,1), b=(1,1,1).",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
                         "options": [],
                         "correct_options": [],
                         "answer": 3,
-                        "explanation": "2*1+0*1+1*1=3."
+                        "explanation": "2*1+0*1+1*1=3.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-006.htm",
@@ -374,28 +404,34 @@
                 "question": {
                     "en": {
                         "content": "If a=(1,0,0) and b=(0,1,0), which vector is a×b?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee","ff8f185d15f6"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "(0,0,1)"
+                                "content": "(0,0,1)",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "(0,0,-1)"
+                                "content": "(0,0,-1)",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "(1,1,0)"
+                                "content": "(1,1,0)",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "(0,1,1)"
+                                "content": "(0,1,1)",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "Right-hand rule: a×b = (0,0,1)."
+                        "explanation": "Right-hand rule: a×b = (0,0,1).",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-007.htm",
@@ -437,28 +473,34 @@
                 "question": {
                     "en": {
                         "content": "If a=(0,2,-1), what is -2a?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "(0,-4,2)"
+                                "content": "(0,-4,2)",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "(0,2,-1)"
+                                "content": "(0,2,-1)",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "(0,4,-2)"
+                                "content": "(0,4,-2)",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "(0,-2,1)"
+                                "content": "(0,-2,1)",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "A"
                         ],
-                        "explanation": "Multiply components by -2."
+                        "explanation": "Multiply components by -2.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-008.htm",
@@ -500,28 +542,34 @@
                 "question": {
                     "en": {
                         "content": "Which of the following is a scalar quantity?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "Displacement"
+                                "content": "Displacement",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "Velocity"
+                                "content": "Velocity",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "Speed"
+                                "content": "Speed",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "Acceleration"
+                                "content": "Acceleration",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "C"
                         ],
-                        "explanation": "Speed is scalar; displacement, velocity, acceleration are vectors."
+                        "explanation": "Speed is scalar; displacement, velocity, acceleration are vectors.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-009.htm",
@@ -563,28 +611,34 @@
                 "question": {
                     "en": {
                         "content": "If a=(3,0,4) and b=(3,0,-4), then a-b equals:",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee","ff8f185d15f6"],
                         "options": [
                             {
                                 "identifier": "A",
-                                "content": "(0,0,8)"
+                                "content": "(0,0,8)",
+                                "images": ["ff95dc7117ee"]
                             },
                             {
                                 "identifier": "B",
-                                "content": "(0,0,-8)"
+                                "content": "(0,0,-8)",
+                                "images": ["ff8f185d15f6"]
                             },
                             {
                                 "identifier": "C",
-                                "content": "(6,0,0)"
+                                "content": "(6,0,0)",
+                                "images": ["ff81f5f30765"]
                             },
                             {
                                 "identifier": "D",
-                                "content": "(0,0,0)"
+                                "content": "(0,0,0)",
+                                "images": ["ff89bae43379"]
                             }
                         ],
                         "correct_options": [
                             "C"
                         ],
-                        "explanation": "a-b = (3-3,0-0,4-(-4))=(0,0,8) actually — correct option is A (typo in older reasoning). Use A."
+                        "explanation": "a-b = (3-3,0-0,4-(-4))=(0,0,8) actually — correct option is A (typo in older reasoning). Use A.",
+                        "explanationImages": ["ff8ca2ef0418"]
                     }
                 },
                 "permalink": "phy-va-010.htm",

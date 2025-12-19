@@ -261,3 +261,30 @@
 {"level":"info","message":"Created chapter group: Mathematics Chapters (mathematics-chapters)","timestamp":"2025-12-18 19:28:59"}
 {"level":"info","message":"Created chapter: Vectors (vectors)","timestamp":"2025-12-18 19:28:59"}
 {"level":"info","message":"Created topic: Scalar Multiplication (scalar-multiplication)","timestamp":"2025-12-18 19:28:59"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 10:59:00"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 10:59:01"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 13:20:19"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 13:20:21"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 13:55:38"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 13:55:39"}
+{"level":"info","message":"Processing image zip file...","timestamp":"2025-12-19 14:18:49"}
+{"level":"info","message":"Uploading 5 images to Cloudinary...","timestamp":"2025-12-19 14:18:49"}
+{"level":"error","message":"Cloudinary upload error: Must supply api_key","timestamp":"2025-12-19 14:18:49"}
+{"level":"error","message":"Cloudinary upload error: Must supply api_key","timestamp":"2025-12-19 14:18:49"}
+{"level":"error","message":"Cloudinary upload error: Must supply api_key","timestamp":"2025-12-19 14:18:49"}
+{"level":"error","message":"Cloudinary upload error: Must supply api_key","timestamp":"2025-12-19 14:18:49"}
+{"level":"error","message":"Cloudinary upload error: Must supply api_key","timestamp":"2025-12-19 14:18:49"}
+{"level":"info","message":"Successfully uploaded 0 images","timestamp":"2025-12-19 14:18:49"}
+{"level":"info","message":"Processed 0 images from zip","timestamp":"2025-12-19 14:18:49"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 14:23:38"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 14:23:39"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 14:23:45"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 14:23:46"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 14:23:52"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 14:23:53"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 14:24:03"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 14:24:04"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 14:24:12"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 14:24:13"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 14:25:52"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 14:25:53"}

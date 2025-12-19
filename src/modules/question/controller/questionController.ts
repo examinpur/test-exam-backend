@@ -133,24 +133,30 @@ const deleteQuestion = async (req: Request, res: Response) => {
 };
 
 const bulkCreateQuestion = async (req: Request, res: Response) => {
-  let filePath: string | undefined;
+  let jsonFilePath: string | undefined;
+  let zipFilePath: string | undefined;
 
   try {
-    const file = req.file;
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
+    const jsonFile = files?.questions?.[0] || req.file;
+    const zipFile = files?.images?.[0];
 
-    if (!file) {
+    if (!jsonFile) {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: 'No file uploaded. Please upload a JSON or DOCX file.',
+        message: 'No questions file uploaded. Please upload a JSON file.',
       });
     }
 
-    filePath = file.path;
-    const data = await parseQuestionFile(filePath);
+    jsonFilePath = jsonFile.path;
+    zipFilePath = zipFile?.path;
+
+    const data = await parseQuestionFile(jsonFilePath);
 
     if (!data || !Array.isArray(data) || data.length === 0) {
-      cleanupFile(filePath);
+      if (jsonFilePath) cleanupFile(jsonFilePath);
+      if (zipFilePath) cleanupFile(zipFilePath);
       return res.status(400).json({
         success: false,
         statusCode: 400,
@@ -158,9 +164,18 @@ const bulkCreateQuestion = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await bulkCreateQuestions(data);
+    // Read zip file buffer if provided
+    let zipBuffer: Buffer | undefined;
+    if (zipFilePath) {
+      const fs = await import('fs');
+      zipBuffer = fs.readFileSync(zipFilePath);
+    }
 
-    cleanupFile(filePath);
+    const result = await bulkCreateQuestions(data, zipBuffer);
+
+    // Cleanup files
+    if (jsonFilePath) cleanupFile(jsonFilePath);
+    if (zipFilePath) cleanupFile(zipFilePath);
 
     if (result.error) {
       return res.status(400).json({
@@ -173,11 +188,12 @@ const bulkCreateQuestion = async (req: Request, res: Response) => {
     return res.status(200).json({
       success: true,
       statusCode: 200,
-      message: `Bulk create completed. Created: ${result.created}, Failed: ${result.failed}`,
+      message: `Bulk create completed. Created: ${result.created}, Failed: ${result.failed}, Images uploaded: ${result.imagesUploaded}`,
       data: result,
     });
   } catch (error: any) {
-    if (filePath) cleanupFile(filePath);
+    if (jsonFilePath) cleanupFile(jsonFilePath);
+    if (zipFilePath) cleanupFile(zipFilePath);
 
     logger.error(`Error occurred in bulkCreateQuestion controller: ${error?.message || error?.response?.error?.message || error?.response?.error || error}`);
 

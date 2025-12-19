@@ -2,6 +2,9 @@ import questionServices from '../services/questionServices';
 import chapterModel from '../../../models/chapterModel';
 import topicModel from '../../../models/topicModel';
 import paperModel from '../../../models/paperModel';
+import { processAndUploadImages, mapImageIdsToCloudinary } from './imageZipProcessor';
+import { CloudinaryImage } from './cloudinaryHelper';
+import logger from '../../../utils/logger';
 
 type Options = {
   concurrency?: number;
@@ -46,7 +49,30 @@ const buildReferenceMaps = async (dataset: any[]) => {
   };
 };
 
-const mapQuestionToPayload = (q: any, refs: any) => {
+/**
+ * Transform options with image mapping
+ */
+const transformOptions = (
+  options: any[],
+  uploadedImages: Map<string, CloudinaryImage>,
+): any[] => {
+  if (!options || !Array.isArray(options)) return [];
+
+  return options.map((opt) => ({
+    identifier: opt.identifier,
+    content: opt.content || '',
+    images: mapImageIdsToCloudinary(opt.images || [], uploadedImages),
+  }));
+};
+
+/**
+ * Map question data to payload with image support
+ */
+const mapQuestionToPayload = (
+  q: any,
+  refs: any,
+  uploadedImages: Map<string, CloudinaryImage>,
+) => {
   const kindMap: Record<string, string> = {
     mcq: 'MCQ',
     msq: 'MSQ',
@@ -85,6 +111,48 @@ const mapQuestionToPayload = (q: any, refs: any) => {
     ? String(q.question.en.content).slice(0, 80)
     : q.permalink ?? 'untitled';
 
+  // Map images for English content
+  const enQuestionImages = mapImageIdsToCloudinary(
+    q.question?.en?.questionImages || [],
+    uploadedImages,
+  );
+  const enOptions = transformOptions(q.question?.en?.options || [], uploadedImages);
+  const enExplanationImages = mapImageIdsToCloudinary(
+    q.question?.en?.explanationImages || [],
+    uploadedImages,
+  );
+
+  // Build English prompt
+  const enPrompt: any = {
+    content: q.question?.en?.content ?? '',
+    images: enQuestionImages,
+    options: enOptions,
+    explanation: q.question?.en?.explanation ?? undefined,
+    explanationImages: enExplanationImages,
+  };
+
+  // Build Hindi prompt if available
+  let hiPrompt: any = undefined;
+  if (q.question?.hi) {
+    const hiQuestionImages = mapImageIdsToCloudinary(
+      q.question?.hi?.questionImages || [],
+      uploadedImages,
+    );
+    const hiOptions = transformOptions(q.question?.hi?.options || [], uploadedImages);
+    const hiExplanationImages = mapImageIdsToCloudinary(
+      q.question?.hi?.explanationImages || [],
+      uploadedImages,
+    );
+
+    hiPrompt = {
+      content: q.question.hi.content || '',
+      images: hiQuestionImages,
+      options: hiOptions,
+      explanation: q.question.hi.explanation ?? undefined,
+      explanationImages: hiExplanationImages,
+    };
+  }
+
   const payload: any = {
     boardId: chapter.boardId,
     examId: chapter.examId,
@@ -104,20 +172,8 @@ const mapQuestionToPayload = (q: any, refs: any) => {
     calculator: false,
 
     prompt: {
-      en: {
-        content: q.question?.en?.content ?? '',
-        options: q.question?.en?.options ?? [],
-        explanation: q.question?.en?.explanation ?? undefined,
-      },
-      ...(q.question?.hi
-        ? {
-            hi: {
-              content: q.question.hi.content,
-              options: q.question.hi.options ?? [],
-              explanation: q.question.hi.explanation ?? undefined,
-            },
-          }
-        : {}),
+      en: enPrompt,
+      ...(hiPrompt ? { hi: hiPrompt } : {}),
     },
 
     correct:
@@ -135,8 +191,15 @@ const mapQuestionToPayload = (q: any, refs: any) => {
   return { payload, missing: [] };
 };
 
+/**
+ * Bulk create questions with optional image zip file
+ * @param dataset - Array of subject objects containing questions
+ * @param zipBuffer - Optional zip file buffer containing images
+ * @param options - Options like concurrency
+ */
 export const bulkCreateQuestions = async (
   dataset: any[],
+  zipBuffer?: Buffer,
   options: Options = {},
 ) => {
   const concurrency = options.concurrency ?? 10;
@@ -148,8 +211,21 @@ export const bulkCreateQuestions = async (
       failed: 0,
       faultyCount: 0,
       faulty: [],
+      imagesUploaded: 0,
       error: 'Invalid or empty dataset provided',
     };
+  }
+
+  // Process and upload images if zip is provided
+  let uploadedImages = new Map<string, CloudinaryImage>();
+  if (zipBuffer && zipBuffer.length > 0) {
+    try {
+      logger.info('Processing image zip file...');
+      uploadedImages = await processAndUploadImages(zipBuffer, 'question-images');
+      logger.info(`Processed ${uploadedImages.size} images from zip`);
+    } catch (error: any) {
+      logger.error(`Error processing zip file: ${error?.message}`);
+    }
   }
 
   const results = { total: 0, created: 0, failed: 0 };
@@ -162,7 +238,7 @@ export const bulkCreateQuestions = async (
   for (const subject of dataset) {
     for (const q of subject.questions || []) {
       results.total++;
-      const { payload, missing } = mapQuestionToPayload(q, refs);
+      const { payload, missing } = mapQuestionToPayload(q, refs, uploadedImages);
 
       if (!payload) {
         results.failed++;
@@ -212,5 +288,6 @@ export const bulkCreateQuestions = async (
     ...results,
     faultyCount: faultyQuestions.length,
     faulty: faultyQuestions,
+    imagesUploaded: uploadedImages.size,
   };
 };
