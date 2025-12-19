@@ -50,28 +50,80 @@ const buildReferenceMaps = async (dataset: any[]) => {
 };
 
 /**
- * Transform options with image mapping
+ * Transform options - only add images field if images exist
  */
 const transformOptions = (
   options: any[],
-  uploadedImages: Map<string, CloudinaryImage>,
+  uploadedImages: Map<string, CloudinaryImage> | undefined,
 ): any[] => {
   if (!options || !Array.isArray(options)) return [];
 
-  return options.map((opt) => ({
-    identifier: opt.identifier,
-    content: opt.content || '',
-    images: mapImageIdsToCloudinary(opt.images || [], uploadedImages),
-  }));
+  return options.map((opt) => {
+    const transformed: any = {
+      identifier: opt.identifier,
+      content: opt.content || '',
+    };
+
+    // Only add images if zip was provided and images exist for this option
+    if (uploadedImages && opt.images && Array.isArray(opt.images) && opt.images.length > 0) {
+      const mappedImages = mapImageIdsToCloudinary(opt.images, uploadedImages);
+      if (mappedImages.length > 0) {
+        transformed.images = mappedImages;
+      }
+    }
+
+    return transformed;
+  });
 };
 
 /**
- * Map question data to payload with image support
+ * Build localized prompt - only adds image fields when images exist
+ */
+const buildLocalizedPrompt = (
+  langData: any,
+  uploadedImages: Map<string, CloudinaryImage> | undefined,
+): any => {
+  if (!langData) return undefined;
+
+  const prompt: any = {
+    content: langData.content ?? '',
+    options: transformOptions(langData.options || [], uploadedImages),
+  };
+
+  // Only add explanation if it exists
+  if (langData.explanation) {
+    prompt.explanation = langData.explanation;
+  }
+
+  // Only add image fields if zip was provided and images exist
+  if (uploadedImages && uploadedImages.size > 0) {
+    // Add question images if they exist in the data and in uploaded images
+    if (langData.questionImages && Array.isArray(langData.questionImages) && langData.questionImages.length > 0) {
+      const mappedImages = mapImageIdsToCloudinary(langData.questionImages, uploadedImages);
+      if (mappedImages.length > 0) {
+        prompt.images = mappedImages;
+      }
+    }
+
+    // Add explanation images if they exist
+    if (langData.explanationImages && Array.isArray(langData.explanationImages) && langData.explanationImages.length > 0) {
+      const mappedImages = mapImageIdsToCloudinary(langData.explanationImages, uploadedImages);
+      if (mappedImages.length > 0) {
+        prompt.explanationImages = mappedImages;
+      }
+    }
+  }
+
+  return prompt;
+};
+
+/**
+ * Map question data to payload - preserves original flow, adds images only when provided
  */
 const mapQuestionToPayload = (
   q: any,
   refs: any,
-  uploadedImages: Map<string, CloudinaryImage>,
+  uploadedImages: Map<string, CloudinaryImage> | undefined,
 ) => {
   const kindMap: Record<string, string> = {
     mcq: 'MCQ',
@@ -111,47 +163,9 @@ const mapQuestionToPayload = (
     ? String(q.question.en.content).slice(0, 80)
     : q.permalink ?? 'untitled';
 
-  // Map images for English content
-  const enQuestionImages = mapImageIdsToCloudinary(
-    q.question?.en?.questionImages || [],
-    uploadedImages,
-  );
-  const enOptions = transformOptions(q.question?.en?.options || [], uploadedImages);
-  const enExplanationImages = mapImageIdsToCloudinary(
-    q.question?.en?.explanationImages || [],
-    uploadedImages,
-  );
-
-  // Build English prompt
-  const enPrompt: any = {
-    content: q.question?.en?.content ?? '',
-    images: enQuestionImages,
-    options: enOptions,
-    explanation: q.question?.en?.explanation ?? undefined,
-    explanationImages: enExplanationImages,
-  };
-
-  // Build Hindi prompt if available
-  let hiPrompt: any = undefined;
-  if (q.question?.hi) {
-    const hiQuestionImages = mapImageIdsToCloudinary(
-      q.question?.hi?.questionImages || [],
-      uploadedImages,
-    );
-    const hiOptions = transformOptions(q.question?.hi?.options || [], uploadedImages);
-    const hiExplanationImages = mapImageIdsToCloudinary(
-      q.question?.hi?.explanationImages || [],
-      uploadedImages,
-    );
-
-    hiPrompt = {
-      content: q.question.hi.content || '',
-      images: hiQuestionImages,
-      options: hiOptions,
-      explanation: q.question.hi.explanation ?? undefined,
-      explanationImages: hiExplanationImages,
-    };
-  }
+  // Build prompts - only adds image fields when images exist
+  const enPrompt = buildLocalizedPrompt(q.question?.en, uploadedImages);
+  const hiPrompt = buildLocalizedPrompt(q.question?.hi, uploadedImages);
 
   const payload: any = {
     boardId: chapter.boardId,
@@ -216,8 +230,8 @@ export const bulkCreateQuestions = async (
     };
   }
 
-  // Process and upload images if zip is provided
-  let uploadedImages = new Map<string, CloudinaryImage>();
+  // Process and upload images only if zip is provided
+  let uploadedImages: Map<string, CloudinaryImage> | undefined;
   if (zipBuffer && zipBuffer.length > 0) {
     try {
       logger.info('Processing image zip file...');
@@ -288,6 +302,6 @@ export const bulkCreateQuestions = async (
     ...results,
     faultyCount: faultyQuestions.length,
     faulty: faultyQuestions,
-    imagesUploaded: uploadedImages.size,
+    imagesUploaded: uploadedImages?.size ?? 0,
   };
 };

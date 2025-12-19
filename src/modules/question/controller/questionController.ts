@@ -5,6 +5,7 @@ import { validateQuestion, validateQuestionUpdate } from '../validation/question
 import { bulkCreateQuestions } from '../helper/bulkSaveQuestions';
 import { parseQuestionFile, cleanupFile } from '../helper/parseQuestionFile';
 import { importQuestionsFromFile } from '../helper/importQuestionsFromFile';
+import { importQuestionsFromMarkdown } from '../helper/importFromMarkdown';
 
 const createQuestion = async (req: Request, res: Response) => {
   try {
@@ -246,6 +247,106 @@ const importQuestionsFromDataset = async (req: Request, res: Response) => {
   }
 };
 
+const importQuestionsFromMarkdownFile = async (req: Request, res: Response) => {
+  let filePath: string | undefined;
+
+  try {
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).json({
+        success: false,
+        statusCode: 400,
+        message: 'No markdown file uploaded. Please upload a .md file with questions.',
+      });
+    }
+
+    filePath = file.path;
+
+    // Get template from request body - can be sent as 'data' JSON string or individual fields
+    let chapter, topic, marks, negMarks, difficulty, type, paperId, year, yearKey, section, correctAnswers;
+
+    if (req.body.data) {
+      // Parse JSON from 'data' field
+      const data = typeof req.body.data === 'string' ? JSON.parse(req.body.data) : req.body.data;
+      chapter = data.chapter;
+      topic = data.topic;
+      marks = data.marks;
+      negMarks = data.negMarks;
+      difficulty = data.difficulty;
+      type = data.type;
+      paperId = data.paperId;
+      year = data.year;
+      yearKey = data.yearKey;
+      section = data.section;
+      correctAnswers = data.correctAnswers;
+    } else {
+      // Get individual fields
+      chapter = req.body.chapter;
+      topic = req.body.topic;
+      marks = req.body.marks;
+      negMarks = req.body.negMarks;
+      difficulty = req.body.difficulty;
+      type = req.body.type;
+      paperId = req.body.paperId;
+      year = req.body.year;
+      yearKey = req.body.yearKey;
+      section = req.body.section;
+      correctAnswers = req.body.correctAnswers;
+    }
+
+    if (!chapter) {
+      cleanupFile(filePath);
+      return res.status(400).json({
+        success: false,
+        statusCode: 400,
+        message: 'chapter slug is required in request body.',
+      });
+    }
+
+    const template = {
+      chapter,
+      topic,
+      marks: marks ? (typeof marks === 'number' ? marks : parseInt(marks, 10)) : 4,
+      negMarks: negMarks ? (typeof negMarks === 'number' ? negMarks : parseInt(negMarks, 10)) : 1,
+      difficulty: difficulty || 'easy',
+      type: type || 'mcq',
+      paperId,
+      year: year ? (typeof year === 'number' ? year : parseInt(year, 10)) : undefined,
+      yearKey,
+      section: section ? (typeof section === 'string' ? JSON.parse(section) : section) : [],
+    };
+
+    // Parse correctAnswers if provided (format: {"1": ["A"], "2": ["B"], ...})
+    const parsedCorrectAnswers = correctAnswers
+      ? (typeof correctAnswers === 'string' ? JSON.parse(correctAnswers) : correctAnswers)
+      : undefined;
+
+    const result = await importQuestionsFromMarkdown(filePath, template, parsedCorrectAnswers);
+
+    // Cleanup file
+    cleanupFile(filePath);
+
+    return res.status(200).json({
+      success: true,
+      statusCode: 200,
+      message: `Import completed. Created: ${result.created}, Failed: ${result.failed}`,
+      data: result,
+    });
+  } catch (error: any) {
+    if (filePath) cleanupFile(filePath);
+
+    logger.error(`Error occurred in importQuestionsFromMarkdownFile controller: ${error?.message || error?.response?.error?.message || error?.response?.error || error}`);
+
+    return res.status(500).json({
+      success: false,
+      statusCode: 500,
+      message: 'Internal server error',
+      error: error?.message || error,
+    });
+  }
+};
+
 const questionController = {
   createQuestion,
   updateQuestion,
@@ -254,6 +355,7 @@ const questionController = {
   deleteQuestion,
   bulkCreateQuestion,
   importQuestionsFromDataset,
+  importQuestionsFromMarkdownFile,
 };
 
 export default questionController;

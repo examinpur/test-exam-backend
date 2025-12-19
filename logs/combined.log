@@ -298,3 +298,118 @@
 {"level":"info","message":"Uploading 5 images to Cloudinary...","timestamp":"2025-12-19 14:34:28"}
 {"level":"info","message":"Successfully uploaded 5 images","timestamp":"2025-12-19 14:34:31"}
 {"level":"info","message":"Processed 5 images from zip","timestamp":"2025-12-19 14:34:31"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:25:54"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:25:55"}
+{"level":"info","message":"Processing image zip file...","timestamp":"2025-12-19 16:30:49"}
+{"level":"info","message":"Uploading 5 images to Cloudinary...","timestamp":"2025-12-19 16:30:49"}
+{"level":"info","message":"Successfully uploaded 5 images","timestamp":"2025-12-19 16:30:52"}
+{"level":"info","message":"Processed 5 images from zip","timestamp":"2025-12-19 16:30:52"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:32:51"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:32:52"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:53:26"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:53:27"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:53:50"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:53:50"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:54:08"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:54:09"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:54:19"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:54:20"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 16:54:42"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 16:54:43"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:03:46"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:04:03"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:04:03"}
+{"level":"info","message":"Processing image zip file...","timestamp":"2025-12-19 17:05:20"}
+{"level":"info","message":"Uploading 5 images to Cloudinary...","timestamp":"2025-12-19 17:05:20"}
+{"level":"info","message":"Successfully uploaded 5 images","timestamp":"2025-12-19 17:05:22"}
+{"level":"info","message":"Processed 5 images from zip","timestamp":"2025-12-19 17:05:22"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:07:42"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:07:42"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:15:42"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:15:42"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:16:25"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:16:26"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:17:41"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:17:42"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:18:03"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:18:03"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:39:54"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:39:55"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:46:25"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:46:25"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:47:10"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:47:11"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:47:47"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:47:49"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:48:04"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:48:05"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:48:09"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:48:10"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:48:18"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:48:19"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 17:48:43"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 17:48:44"}
+{"level":"info","message":"Processing image zip file...","timestamp":"2025-12-19 17:51:28"}
+{"level":"info","message":"Uploading 5 images to Cloudinary...","timestamp":"2025-12-19 17:51:28"}
+{"level":"info","message":"Successfully uploaded 5 images","timestamp":"2025-12-19 17:51:37"}
+{"level":"info","message":"Processed 5 images from zip","timestamp":"2025-12-19 17:51:37"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:22:30"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:22:31"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:22:48"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:22:48"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:22:54"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:22:54"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:23:01"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:23:01"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:23:22"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:23:22"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:24:07"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:24:08"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:26:38"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:26:40"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:26:51"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:26:51"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:27:06"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:27:07"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:27:14"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:27:15"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:27:37"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:27:37"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:28:03"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:28:04"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:33:02"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:33:03"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:33:14"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:33:15"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:33:38"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:33:38"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:34:05"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:34:07"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:34:28"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:34:29"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:37:20"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:37:21"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:38:24"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:38:25"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:42:54"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:42:55"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:43:10"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:43:10"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:43:15"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:43:16"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:43:40"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:43:40"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:44:07"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:44:07"}
+{"body":{},"level":"error","message":"Application Error Unexpected field","method":"POST","params":{},"path":"/api/v1/questions/bulk","query":{},"stack":"MulterError: Unexpected field\n    at wrappedFileFilter (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\multer\\index.js:40:19)\n    at Multipart.<anonymous> (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\multer\\lib\\make-middleware.js:132:7)\n    at Multipart.emit (node:events:518:28)\n    at HeaderParser.cb (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:358:14)\n    at HeaderParser.push (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:162:20)\n    at SBMH.ssCb [as _cb] (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:394:37)\n    at feed (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:219:14)\n    at SBMH.push (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:104:16)\n    at Multipart._write (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:567:19)\n    at writeOrBuffer (node:internal/streams/writable:572:12)","statusCode":500,"timestamp":"2025-12-19 18:45:38"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:46:14"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:46:15"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:46:29"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:46:30"}
+{"body":{},"level":"error","message":"Application Error Unexpected field","method":"POST","params":{},"path":"/api/v1/questions/bulk","query":{},"stack":"MulterError: Unexpected field\n    at wrappedFileFilter (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\multer\\index.js:40:19)\n    at Multipart.<anonymous> (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\multer\\lib\\make-middleware.js:132:7)\n    at Multipart.emit (node:events:518:28)\n    at HeaderParser.cb (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:358:14)\n    at HeaderParser.push (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:162:20)\n    at SBMH.ssCb [as _cb] (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:394:37)\n    at feed (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:219:14)\n    at SBMH.push (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\streamsearch\\lib\\sbmh.js:104:16)\n    at Multipart._write (C:\\D Drive\\CodeRoofs\\plans\\plans\\backend\\node_modules\\busboy\\lib\\types\\multipart.js:567:19)\n    at writeOrBuffer (node:internal/streams/writable:572:12)","statusCode":500,"timestamp":"2025-12-19 18:47:45"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:47:59"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:48:01"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:50:26"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:50:27"}
+{"level":"info","message":"Server running on PORT: 8000","timestamp":"2025-12-19 18:50:39"}
+{"level":"info","message":"Connected with MongoDB Database!!!","timestamp":"2025-12-19 18:50:39"}

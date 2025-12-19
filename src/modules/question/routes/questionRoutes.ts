@@ -25,6 +25,14 @@ router.post(
   questionController.importQuestionsFromDataset,
 );
 
+// Import questions from markdown file with template in body
+// 'file' for .md file, template metadata in JSON body
+router.post(
+  '/import-markdown',
+  questionFileUpload.single('file'),
+  questionController.importQuestionsFromMarkdownFile,
+);
+
 router.put(
   '/:id',
   questionController.updateQuestion,

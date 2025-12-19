@@ -25,17 +25,19 @@ const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCa
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
     'application/msword', // .doc
     'text/plain', // .txt
+    'text/markdown', // .md
+    'text/x-markdown', // .md
     'application/zip', // .zip
     'application/x-zip-compressed', // .zip (Windows)
   ];
 
-  const allowedExtensions = ['.json', '.docx', '.doc', '.txt', '.zip'];
+  const allowedExtensions = ['.json', '.docx', '.doc', '.txt', '.zip', '.md'];
   const ext = path.extname(file.originalname).toLowerCase();
 
   if (allowedMimeTypes.includes(file.mimetype) || allowedExtensions.includes(ext)) {
     cb(null, true);
   } else {
-    cb(new Error('Only JSON, DOCX, DOC, TXT, or ZIP files are allowed'));
+    cb(new Error('Only JSON, DOCX, DOC, TXT, MD, or ZIP files are allowed'));
   }
 };
 
