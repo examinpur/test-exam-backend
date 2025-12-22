@@ -17,5 +17,11 @@ export default {
     secret: process.env.JWT_SECRET || 'your_top_secret_key_to_encrypt_your_jwt_token',
   },
 
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME ,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET
+  },
+
   logLevel: process.env.LOG_LEVEL || 'Development',
 }

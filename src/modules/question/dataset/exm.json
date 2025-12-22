@@ -1,0 +1,166 @@
+[
+  {
+    "question_id": 1001,
+    "question_text": "<p>If <strong>a</strong> = (1, 2, 2) and <strong>b</strong> = (2, -1, 1), what is <strong>a + b</strong>?</p>",
+    "question_images": [],
+    "solution_text": "<p>Add components: (1+2, 2-1, 2+1) = (3, 1, 3).</p>",
+    "solution_images": [],
+    "metadata": {
+      "class": "JEE MAIN + NEET",
+      "subject": "Physics",
+      "chapter": "Vector Algebra",
+      "topic": "Vector Addition and Subtraction",
+      "level": "Easy",
+      "question_type": "SINGLE CORRECT MCQ"
+    },
+    "options": [
+      {
+        "option_letter": "A",
+        "option_text": "<p>(3, 1, 3)</p>",
+        "option_images": [],
+        "is_correct": true
+      },
+      {
+        "option_letter": "B",
+        "option_text": "<p>(1, 1, 1)</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "C",
+        "option_text": "<p>(2, 1, 2)</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "D",
+        "option_text": "<p>(0, 3, 1)</p>",
+        "option_images": [],
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "question_id": 1002,
+    "question_text": "<p>If <strong>a</strong> and <strong>b</strong> are perpendicular with |a|=3 and |b|=4, what is |a × b|?</p>",
+    "question_images": [],
+    "solution_text": "<p>|a × b| = |a||b|sin(θ) = 3 × 4 × 1 = 12 (since θ = 90° for perpendicular vectors).</p>",
+    "solution_images": [],
+    "metadata": {
+      "class": "JEE ADVANCED",
+      "subject": "Physics",
+      "chapter": "Vector Algebra",
+      "topic": "Vector Cross Product",
+      "level": "Medium",
+      "question_type": "SINGLE CORRECT MCQ"
+    },
+    "options": [
+      {
+        "option_letter": "A",
+        "option_text": "<p>12</p>",
+        "option_images": [],
+        "is_correct": true
+      },
+      {
+        "option_letter": "B",
+        "option_text": "<p>7</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "C",
+        "option_text": "<p>5</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "D",
+        "option_text": "<p>1</p>",
+        "option_images": [],
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "question_id": 1003,
+    "question_text": "<p>Which of the following is a scalar quantity?</p>",
+    "question_images": [],
+    "solution_text": "<p>Speed is a scalar quantity as it has only magnitude. Displacement, velocity, and acceleration are vectors as they have both magnitude and direction.</p>",
+    "solution_images": [],
+    "metadata": {
+      "class": "NEET",
+      "subject": "Physics",
+      "chapter": "Motion in One Dimension",
+      "topic": "Scalars and Vectors",
+      "level": "Easy",
+      "question_type": "SINGLE CORRECT MCQ"
+    },
+    "options": [
+      {
+        "option_letter": "A",
+        "option_text": "<p>Displacement</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "B",
+        "option_text": "<p>Velocity</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "C",
+        "option_text": "<p>Speed</p>",
+        "option_images": [],
+        "is_correct": true
+      },
+      {
+        "option_letter": "D",
+        "option_text": "<p>Acceleration</p>",
+        "option_images": [],
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "question_id": 1004,
+    "question_text": "<p>If <strong>a</strong> = (2, -1, 3), what is 3<strong>a</strong>?</p>",
+    "question_images": [],
+    "solution_text": "<p>Scalar multiplication: multiply each component by 3. So 3a = (6, -3, 9).</p>",
+    "solution_images": [],
+    "metadata": {
+      "class": "JEE MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors",
+      "topic": "Scalar Multiplication",
+      "level": "Easy",
+      "question_type": "SINGLE CORRECT MCQ"
+    },
+    "options": [
+      {
+        "option_letter": "A",
+        "option_text": "<p>(6, -3, 9)</p>",
+        "option_images": [],
+        "is_correct": true
+      },
+      {
+        "option_letter": "B",
+        "option_text": "<p>(2, -1, 3)</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "C",
+        "option_text": "<p>(3, -1, 3)</p>",
+        "option_images": [],
+        "is_correct": false
+      },
+      {
+        "option_letter": "D",
+        "option_text": "<p>(5, -2, 7)</p>",
+        "option_images": [],
+        "is_correct": false
+      }
+    ]
+  }
+]

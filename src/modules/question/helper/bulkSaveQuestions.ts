@@ -2,6 +2,9 @@ import questionServices from '../services/questionServices';
 import chapterModel from '../../../models/chapterModel';
 import topicModel from '../../../models/topicModel';
 import paperModel from '../../../models/paperModel';
+import { processAndUploadImages, mapImageIdsToCloudinary } from './imageZipProcessor';
+import { CloudinaryImage } from './cloudinaryHelper';
+import logger from '../../../utils/logger';
 
 type Options = {
   concurrency?: number;
@@ -46,7 +49,82 @@ const buildReferenceMaps = async (dataset: any[]) => {
   };
 };
 
-const mapQuestionToPayload = (q: any, refs: any) => {
+/**
+ * Transform options - only add images field if images exist
+ */
+const transformOptions = (
+  options: any[],
+  uploadedImages: Map<string, CloudinaryImage> | undefined,
+): any[] => {
+  if (!options || !Array.isArray(options)) return [];
+
+  return options.map((opt) => {
+    const transformed: any = {
+      identifier: opt.identifier,
+      content: opt.content || '',
+    };
+
+    // Only add images if zip was provided and images exist for this option
+    if (uploadedImages && opt.images && Array.isArray(opt.images) && opt.images.length > 0) {
+      const mappedImages = mapImageIdsToCloudinary(opt.images, uploadedImages);
+      if (mappedImages.length > 0) {
+        transformed.images = mappedImages;
+      }
+    }
+
+    return transformed;
+  });
+};
+
+/**
+ * Build localized prompt - only adds image fields when images exist
+ */
+const buildLocalizedPrompt = (
+  langData: any,
+  uploadedImages: Map<string, CloudinaryImage> | undefined,
+): any => {
+  if (!langData) return undefined;
+
+  const prompt: any = {
+    content: langData.content ?? '',
+    options: transformOptions(langData.options || [], uploadedImages),
+  };
+
+  // Only add explanation if it exists
+  if (langData.explanation) {
+    prompt.explanation = langData.explanation;
+  }
+
+  // Only add image fields if zip was provided and images exist
+  if (uploadedImages && uploadedImages.size > 0) {
+    // Add question images if they exist in the data and in uploaded images
+    if (langData.questionImages && Array.isArray(langData.questionImages) && langData.questionImages.length > 0) {
+      const mappedImages = mapImageIdsToCloudinary(langData.questionImages, uploadedImages);
+      if (mappedImages.length > 0) {
+        prompt.images = mappedImages;
+      }
+    }
+
+    // Add explanation images if they exist
+    if (langData.explanationImages && Array.isArray(langData.explanationImages) && langData.explanationImages.length > 0) {
+      const mappedImages = mapImageIdsToCloudinary(langData.explanationImages, uploadedImages);
+      if (mappedImages.length > 0) {
+        prompt.explanationImages = mappedImages;
+      }
+    }
+  }
+
+  return prompt;
+};
+
+/**
+ * Map question data to payload - preserves original flow, adds images only when provided
+ */
+const mapQuestionToPayload = (
+  q: any,
+  refs: any,
+  uploadedImages: Map<string, CloudinaryImage> | undefined,
+) => {
   const kindMap: Record<string, string> = {
     mcq: 'MCQ',
     msq: 'MSQ',
@@ -85,6 +163,10 @@ const mapQuestionToPayload = (q: any, refs: any) => {
     ? String(q.question.en.content).slice(0, 80)
     : q.permalink ?? 'untitled';
 
+  // Build prompts - only adds image fields when images exist
+  const enPrompt = buildLocalizedPrompt(q.question?.en, uploadedImages);
+  const hiPrompt = buildLocalizedPrompt(q.question?.hi, uploadedImages);
+
   const payload: any = {
     boardId: chapter.boardId,
     examId: chapter.examId,
@@ -104,20 +186,8 @@ const mapQuestionToPayload = (q: any, refs: any) => {
     calculator: false,
 
     prompt: {
-      en: {
-        content: q.question?.en?.content ?? '',
-        options: q.question?.en?.options ?? [],
-        explanation: q.question?.en?.explanation ?? undefined,
-      },
-      ...(q.question?.hi
-        ? {
-            hi: {
-              content: q.question.hi.content,
-              options: q.question.hi.options ?? [],
-              explanation: q.question.hi.explanation ?? undefined,
-            },
-          }
-        : {}),
+      en: enPrompt,
+      ...(hiPrompt ? { hi: hiPrompt } : {}),
     },
 
     correct:
@@ -135,8 +205,15 @@ const mapQuestionToPayload = (q: any, refs: any) => {
   return { payload, missing: [] };
 };
 
+/**
+ * Bulk create questions with optional image zip file
+ * @param dataset - Array of subject objects containing questions
+ * @param zipBuffer - Optional zip file buffer containing images
+ * @param options - Options like concurrency
+ */
 export const bulkCreateQuestions = async (
   dataset: any[],
+  zipBuffer?: Buffer,
   options: Options = {},
 ) => {
   const concurrency = options.concurrency ?? 10;
@@ -148,8 +225,21 @@ export const bulkCreateQuestions = async (
       failed: 0,
       faultyCount: 0,
       faulty: [],
+      imagesUploaded: 0,
       error: 'Invalid or empty dataset provided',
     };
+  }
+
+  // Process and upload images only if zip is provided
+  let uploadedImages: Map<string, CloudinaryImage> | undefined;
+  if (zipBuffer && zipBuffer.length > 0) {
+    try {
+      logger.info('Processing image zip file...');
+      uploadedImages = await processAndUploadImages(zipBuffer, 'question-images');
+      logger.info(`Processed ${uploadedImages.size} images from zip`);
+    } catch (error: any) {
+      logger.error(`Error processing zip file: ${error?.message}`);
+    }
   }
 
   const results = { total: 0, created: 0, failed: 0 };
@@ -162,7 +252,7 @@ export const bulkCreateQuestions = async (
   for (const subject of dataset) {
     for (const q of subject.questions || []) {
       results.total++;
-      const { payload, missing } = mapQuestionToPayload(q, refs);
+      const { payload, missing } = mapQuestionToPayload(q, refs, uploadedImages);
 
       if (!payload) {
         results.failed++;
@@ -212,5 +302,6 @@ export const bulkCreateQuestions = async (
     ...results,
     faultyCount: faultyQuestions.length,
     faulty: faultyQuestions,
+    imagesUploaded: uploadedImages?.size ?? 0,
   };
 };

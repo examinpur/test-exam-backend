@@ -3,6 +3,69 @@ import Chapter from '../../../models/chapterModel';
 import Topic from '../../../models/topicModel';
 import { generateSlug } from '../../../utils/slug';
 import { QuestionResponse } from '../types/questionTypes';
+import { generateImageUrl, CloudinaryImage } from '../helper/cloudinaryHelper';
+
+// Image transformation helpers
+const transformImage = (image: any): any => {
+  if (!image || !image.publicId || !image.version) return image;
+  return {
+    ...image,
+    url: generateImageUrl(image as CloudinaryImage),
+  };
+};
+
+const transformImages = (images: any[]): any[] => {
+  if (!images || !Array.isArray(images)) return [];
+  return images.map(transformImage);
+};
+
+const transformOptions = (options: any[]): any[] => {
+  if (!options || !Array.isArray(options)) return [];
+  return options.map((opt) => ({
+    ...opt,
+    images: transformImages(opt.images || []),
+  }));
+};
+
+const transformLocalizedBlock = (block: any): any => {
+  if (!block) return block;
+  return {
+    ...block,
+    images: transformImages(block.images || []),
+    options: transformOptions(block.options || []),
+    explanationImages: transformImages(block.explanationImages || []),
+  };
+};
+
+const transformI18n = (i18n: any): any => {
+  if (!i18n) return i18n;
+  return {
+    ...(i18n.en ? { en: transformLocalizedBlock(i18n.en) } : {}),
+    ...(i18n.hi ? { hi: transformLocalizedBlock(i18n.hi) } : {}),
+  };
+};
+
+/**
+ * Transform question data to include image URLs for response
+ */
+const transformQuestionForResponse = (question: any): any => {
+  if (!question) return question;
+
+  const doc = question.toObject ? question.toObject() : question;
+
+  return {
+    ...doc,
+    prompt: transformI18n(doc.prompt),
+    passage: transformI18n(doc.passage),
+  };
+};
+
+/**
+ * Transform array of questions for response
+ */
+const transformQuestionsForResponse = (questions: any[]): any[] => {
+  return questions.map(transformQuestionForResponse);
+};
 
 const validateQuestionKind = (kind: string, prompt: any, passage: any, correct: any, topicId?: string): { valid: boolean; message?: string } => {
   if (kind === 'COMPREHENSION_PASSAGE') {
@@ -221,7 +284,7 @@ const createQuestion = async (data: any): Promise<QuestionResponse> => {
       success: true,
       statusCode: 201,
       message: 'Question created successfully',
-      data: question,
+      data: transformQuestionForResponse(question),
     };
   } catch (error: any) {
     return {
@@ -297,7 +360,7 @@ const updateQuestion = async (id: string, data: any): Promise<QuestionResponse> 
       success: true,
       statusCode: 200,
       message: 'Question updated successfully',
-      data: updatedQuestion,
+      data: transformQuestionForResponse(updatedQuestion),
     };
   } catch (error: any) {
     return {
@@ -317,7 +380,7 @@ const getAllQuestions = async (): Promise<QuestionResponse> => {
       success: true,
       statusCode: 200,
       message: 'Questions fetched successfully',
-      data: questions,
+      data: transformQuestionsForResponse(questions),
     };
   } catch (error: any) {
     return {
@@ -345,7 +408,7 @@ const getQuestionById = async (id: string): Promise<QuestionResponse> => {
       success: true,
       statusCode: 200,
       message: 'Question fetched successfully',
-      data: question,
+      data: transformQuestionForResponse(question),
     };
   } catch (error: any) {
     return {
@@ -373,7 +436,7 @@ const getQuestionByPathKey = async (pathKey: string): Promise<QuestionResponse> 
       success: true,
       statusCode: 200,
       message: 'Question fetched successfully',
-      data: question,
+      data: transformQuestionForResponse(question),
     };
   } catch (error: any) {
     return {
@@ -397,7 +460,7 @@ const getQuestionsByChapterId = async (chapterId: string): Promise<QuestionRespo
       success: true,
       statusCode: 200,
       message: 'Questions fetched successfully',
-      data: questions,
+      data: transformQuestionsForResponse(questions),
     };
   } catch (error: any) {
     return {
@@ -421,7 +484,7 @@ const getQuestionsByTopicId = async (topicId: string): Promise<QuestionResponse>
       success: true,
       statusCode: 200,
       message: 'Questions fetched successfully',
-      data: questions,
+      data: transformQuestionsForResponse(questions),
     };
   } catch (error: any) {
     return {
@@ -444,7 +507,7 @@ const getQuestionsByComprehensionId = async (comprehensionId: string): Promise<Q
       success: true,
       statusCode: 200,
       message: 'Questions fetched successfully',
-      data: questions,
+      data: transformQuestionsForResponse(questions),
     };
   } catch (error: any) {
     return {
@@ -467,7 +530,7 @@ const getQuestionsByPaperId = async (paperId: string): Promise<QuestionResponse>
       success: true,
       statusCode: 200,
       message: 'Questions fetched successfully',
-      data: questions,
+      data: transformQuestionsForResponse(questions),
     };
   } catch (error: any) {
     return {
@@ -495,7 +558,7 @@ const deleteQuestion = async (id: string): Promise<QuestionResponse> => {
       success: true,
       statusCode: 200,
       message: 'Question deleted successfully',
-      data: question,
+      data: transformQuestionForResponse(question),
     };
   } catch (error: any) {
     return {
@@ -521,4 +584,3 @@ const questionServices = {
 };
 
 export default questionServices;
-

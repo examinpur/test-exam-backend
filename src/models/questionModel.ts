@@ -1,22 +1,39 @@
 import mongoose from 'mongoose';
 
-const imageSchema = new mongoose.Schema(
+// const imageSchema = new mongoose.Schema(
+//   {
+//     url: {
+//       type: String,
+//       required: true,
+//     },
+//     alt: {
+//       type: String,
+//     },
+//     width: {
+//       type: Number,
+//     },
+//     height: {
+//       type: Number,
+//     },
+//   },
+//   { _id: false },
+// );
+
+export const imageSchema = new mongoose.Schema(
   {
-    url: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-    },
-    width: {
-      type: Number,
-    },
-    height: {
-      type: Number,
-    },
+    publicId: { type: String, required: true },   // e.g. "question-images/abc123"
+    version:  { type: Number, required: true },   // e.g. 1734523456
+
+    // useful for layout + Next/Image sizing
+    width:  { type: Number, required: true },
+    height: { type: Number, required: true },
+
+    alt: { type: String, default: "" },
+
+    // optional: if you ever store non-image resources
+    // resourceType: { type: String, enum: ["image"], default: "image" },
   },
-  { _id: false },
+  { _id: false }
 );
 
 const optionSchema = new mongoose.Schema(
