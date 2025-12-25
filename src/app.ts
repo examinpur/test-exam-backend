@@ -10,6 +10,7 @@ import chapterRoutes from './modules/chapter/routes/chapterRoutes';
 import topicRoutes from './modules/topic/routes/topicRoutes';
 import questionRoutes from './modules/question/routes/questionRoutes';
 import paperRoutes from './modules/paper/routes/paperRoutes';
+import examSessionRoutes from './modules/examSession/routes/examSessionRoutes';
 
 dbConnection();
 const app = express();
@@ -35,6 +36,7 @@ app.use('/api/v1/chapters', chapterRoutes);
 app.use('/api/v1/topics', topicRoutes);
 app.use('/api/v1/questions', questionRoutes);
 app.use('/api/v1/papers', paperRoutes);
+app.use('/api/v1/exam-sessions', examSessionRoutes);
 
 app.use(errorHandler);
 
