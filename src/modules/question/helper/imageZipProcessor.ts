@@ -62,10 +62,6 @@ export const processAndUploadImages = async (
   return uploadedImages;
 };
 
-/**
- * Map image IDs from question data to CloudinaryImage objects
- * Returns empty array if uploadedImages is undefined or no matches found
- */
 export const mapImageIdsToCloudinary = (
   imageIds: string[],
   uploadedImages: Map<string, CloudinaryImage> | undefined,

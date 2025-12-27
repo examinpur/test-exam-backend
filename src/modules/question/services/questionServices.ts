@@ -213,36 +213,61 @@ const createQuestion = async (data: any): Promise<QuestionResponse> => {
       yearKey,
       section,
       tags,
+      slug: incomingSlug,
+      pathKey: incomingPathKey,
+      pathSlugs: incomingPathSlugs,
+      boardSlug: incomingBoardSlug,
+      examSlug: incomingExamSlug,
+      subjectSlug: incomingSubjectSlug,
+      chapterGroupSlug: incomingChapterGroupSlug,
+      chapterSlug: incomingChapterSlug,
+      topicSlug: incomingTopicSlug,
     } = data;
 
     const validation = validateQuestionKind(kind, prompt, passage, correct, topicId);
     if (!validation.valid) {
-      return {
-        success: false,
-        statusCode: 400,
-        message: validation.message || 'Invalid question kind',
-      };
+      return { success: false, statusCode: 400, message: validation.message || 'Invalid question kind' };
     }
 
-    const slug = generateSlug(name);
-    const pathData = await computePathKey(comprehensionId, topicId, chapterId, slug);
+    const slug = generateSlug(incomingSlug || name);
+
+    const hasIncomingPath =
+      incomingPathKey &&
+      Array.isArray(incomingPathSlugs) &&
+      incomingBoardSlug &&
+      incomingExamSlug &&
+      incomingSubjectSlug &&
+      incomingChapterGroupSlug &&
+      incomingChapterSlug;
+
+    const pathData = hasIncomingPath
+      ? {
+          pathKey: String(incomingPathKey),
+          pathSlugs: incomingPathSlugs,
+          slugs: {
+            boardSlug: incomingBoardSlug,
+            examSlug: incomingExamSlug,
+            subjectSlug: incomingSubjectSlug,
+            chapterGroupSlug: incomingChapterGroupSlug,
+            chapterSlug: incomingChapterSlug,
+            topicSlug: incomingTopicSlug,
+          },
+        }
+      : await computePathKey(
+          comprehensionId?.toString(),
+          topicId?.toString(),
+          chapterId?.toString(),
+          slug,
+        );
 
     let query: any = {};
-    if (comprehensionId) {
-      query = { comprehensionId, slug };
-    } else if (topicId) {
-      query = { topicId, slug, comprehensionId: { $exists: false } };
-    } else {
-      query = { chapterId, slug, comprehensionId: { $exists: false }, topicId: { $exists: false } };
-    }
+    if (comprehensionId) query = { comprehensionId, slug };
+    else if (topicId) query = { topicId, slug, comprehensionId: { $exists: false } };
+    else query = { chapterId, slug, comprehensionId: { $exists: false }, topicId: { $exists: false } };
 
     const existingQuestion = await Question.findOne(query);
     if (existingQuestion) {
-      return {
-        success: false,
-        statusCode: 400,
-        message: 'Question with this slug already exists',
-      };
+      return { success: false, statusCode: 400, message: 'Question with this slug already exists' };
     }
 
     const question = await Question.create({
@@ -252,12 +277,14 @@ const createQuestion = async (data: any): Promise<QuestionResponse> => {
       chapterGroupId,
       chapterId,
       topicId,
+
       boardSlug: pathData.slugs.boardSlug,
       examSlug: pathData.slugs.examSlug,
       subjectSlug: pathData.slugs.subjectSlug,
       chapterGroupSlug: pathData.slugs.chapterGroupSlug,
       chapterSlug: pathData.slugs.chapterSlug,
       topicSlug: pathData.slugs.topicSlug,
+
       paperRefId,
       comprehensionId,
       comprehensionOrder: comprehensionOrder || 0,
@@ -280,21 +307,12 @@ const createQuestion = async (data: any): Promise<QuestionResponse> => {
       isActive: true,
     });
 
-    return {
-      success: true,
-      statusCode: 201,
-      message: 'Question created successfully',
-      data: transformQuestionForResponse(question),
-    };
+    return { success: true, statusCode: 201, message: 'Question created successfully', data: transformQuestionForResponse(question) };
   } catch (error: any) {
-    return {
-      success: false,
-      statusCode: 500,
-      message: 'Error occurred while creating question',
-      error: error?.message || error,
-    };
+    return { success: false, statusCode: 500, message: 'Error occurred while creating question', error: error?.message || error };
   }
 };
+
 
 const updateQuestion = async (id: string, data: any): Promise<QuestionResponse> => {
   try {

@@ -9,7 +9,6 @@ router.post(
   questionController.createQuestion,
 );
 
-// Bulk upload: 'questions' for JSON file, 'images' for optional ZIP file
 router.post(
   '/bulk',
   questionFileUpload.fields([
@@ -25,8 +24,6 @@ router.post(
   questionController.importQuestionsFromDataset,
 );
 
-// Import questions from markdown file with template in body
-// 'file' for .md file, template metadata in JSON body
 router.post(
   '/import-markdown',
   questionFileUpload.single('file'),
