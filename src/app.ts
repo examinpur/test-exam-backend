@@ -26,7 +26,6 @@ app.get('/health', (req, res) => {
   res.send('ok');
 });
 
-// API v1 Routes
 app.use('/api/v1/boards', boardRoutes);
 app.use('/api/v1/exams', examRoutes);
 app.use('/api/v1/subjects', subjectRoutes);

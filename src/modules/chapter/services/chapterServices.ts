@@ -4,6 +4,15 @@ import Subject from '../../../models/subjectModel';
 import { generateSlug } from '../../../utils/slug';
 import { ChapterResponse } from '../types/chapterTypes';
 
+type ChapterPathArgs = {
+  boardSlug: string;
+  examSlug: string;
+  subjectSlug: string;
+  chapterGroupSlug: string;
+  chapterSlug: string;
+  onlyActive?: boolean;
+};
+
 const createChapter = async (
   boardId: string,
   examId: string,
@@ -359,6 +368,46 @@ const getChapterBySlug = async (slug: string): Promise<ChapterResponse> => {
   }
 };
 
+const getChapterByPath = async (args: ChapterPathArgs): Promise<ChapterResponse> => {
+  try {
+    const {
+      boardSlug,
+      examSlug,
+      subjectSlug,
+      chapterGroupSlug,
+      chapterSlug,
+      onlyActive = false,
+    } = args;
+    const pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}`;
+    const chapter = await Chapter.findOne({
+      pathKey,
+      ...(onlyActive ? { isActive: true } : {}),
+    });
+
+    if (!chapter) {
+      return {
+        success: false,
+        statusCode: 404,
+        message: "Chapter not found",
+      };
+    }
+
+    return {
+      success: true,
+      statusCode: 200,
+      message: "Chapter fetched successfully",
+      data: chapter,
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      statusCode: 500,
+      message: "Error occurred while fetching chapter",
+      error: error?.message || error,
+    };
+  }
+};
+
 const getChaptersByChapterGroupId = async (chapterGroupId: string): Promise<ChapterResponse> => {
   try {
     const chapters = await Chapter.find({ chapterGroupId }).sort({ order: 1 });
@@ -415,6 +464,7 @@ const chapterServices = {
   getChapterBySlug,
   getChaptersByChapterGroupId,
   deleteChapter,
+  getChapterByPath
 };
 
 export default chapterServices;

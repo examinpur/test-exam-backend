@@ -73,14 +73,24 @@ const updateChapter = async (req: Request, res: Response) => {
 
 const getChapters = async (req: Request, res: Response) => {
   try {
-    const { chapterGroupId, slug } = req.query;
+
+    const { chapterGroupId, boardSlug , examSlug, subjectSlug, chapterGroupSlug, chapterSlug , slug } = req.query;
 
     let result;
-    if (slug) {
-      result = await chapterServices.getChapterBySlug(slug as string);
-    } else if (chapterGroupId) {
+   if (boardSlug && examSlug && subjectSlug && chapterGroupSlug && chapterSlug) {
+  result = await chapterServices.getChapterByPath({
+    boardSlug: String(boardSlug),
+    examSlug: String(examSlug),
+    subjectSlug: String(subjectSlug),
+    chapterGroupSlug: String(chapterGroupSlug),
+    chapterSlug: String(chapterSlug),
+    onlyActive: true,
+  }) 
+ } else if (chapterGroupId) {
       result = await chapterServices.getChaptersByChapterGroupId(chapterGroupId as string);
-    } else {
+    }  else if (slug){
+      result = await chapterServices.getChapterBySlug(slug as string);
+    }else {
       result = await chapterServices.getAllChapters();
     }
 

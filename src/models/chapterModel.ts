@@ -73,6 +73,7 @@ const chapterSchema = new mongoose.Schema(
 
 chapterSchema.index({ chapterGroupId: 1, slug: 1 }, { unique: true });
 chapterSchema.index({ chapterGroupSlug: 1, subjectSlug: 1, examSlug: 1 });
+chapterSchema.index({ pathKey: 1 }, { unique: true });
 
 export default mongoose.model('Chapter', chapterSchema);
 
