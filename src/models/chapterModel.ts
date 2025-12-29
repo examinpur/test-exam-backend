@@ -1,4 +1,14 @@
 import mongoose from 'mongoose';
+import { imageSchema } from './questionModel';
+
+
+const i18nStringSchema = new mongoose.Schema(
+  {
+    en: { type: String, required: true },
+    hi: { type: String },
+  },
+  { _id: false }
+);
 
 const chapterSchema = new mongoose.Schema(
   {
@@ -22,10 +32,8 @@ const chapterSchema = new mongoose.Schema(
       ref: 'ChapterGroup',
       required: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
+   name: { type: i18nStringSchema, required: true },
+   image: { type: imageSchema, default: null },
     slug: {
       type: String,
       required: true,

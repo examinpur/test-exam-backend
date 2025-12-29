@@ -1,31 +1,41 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import { imageSchema } from "./questionModel";
+
+const i18nStringSchema = new mongoose.Schema(
+  {
+    en: { type: String, required: true },
+    hi: { type: String },
+  },
+  { _id: false }
+);
 
 const boardSchema = new mongoose.Schema(
   {
     name: {
-      type: String,
+      type: i18nStringSchema,
       required: true,
     },
+
     slug: {
       type: String,
       required: true,
       unique: true,
       index: true,
     },
-    order: {
-      type: Number,
-      default: 0,
+
+    image: {
+      type: imageSchema,
+      default: null,
     },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
+
+    order: { type: Number, default: 0 },
+
+    isActive: { type: Boolean, default: true },
   },
   {
     timestamps: true,
-    collection: 'boards',
-  },
+    collection: "boards",
+  }
 );
 
-export default mongoose.model('Board', boardSchema);
-
+export default mongoose.model("Board", boardSchema);

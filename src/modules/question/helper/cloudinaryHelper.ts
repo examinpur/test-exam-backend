@@ -2,7 +2,6 @@ import { v2 as cloudinary } from 'cloudinary';
 import logger from '../../../utils/logger';
 import env from '../../../config/env';
 
-// Configure cloudinary
 cloudinary.config({
   cloud_name: env.cloudinary.cloudName,
   api_key: env.cloudinary.apiKey,
@@ -23,9 +22,6 @@ export interface UploadResult {
   error?: string;
 }
 
-/**
- * Upload a single image buffer to Cloudinary
- */
 export const uploadImageBuffer = async (
   buffer: Buffer,
   folder: string = 'question-images',
@@ -66,9 +62,6 @@ export const uploadImageBuffer = async (
   }
 };
 
-/**
- * Upload multiple images in parallel with concurrency control
- */
 export const uploadImagesInBatch = async (
   images: Array<{ name: string; buffer: Buffer }>,
   folder: string = 'question-images',
@@ -76,7 +69,6 @@ export const uploadImagesInBatch = async (
 ): Promise<Map<string, CloudinaryImage>> => {
   const results = new Map<string, CloudinaryImage>();
   
-  // Process in batches
   for (let i = 0; i < images.length; i += concurrency) {
     const batch = images.slice(i, i + concurrency);
     const uploadPromises = batch.map(async (img) => {
@@ -93,9 +85,6 @@ export const uploadImagesInBatch = async (
   return results;
 };
 
-/**
- * Generate Cloudinary URL from stored image data
- */
 export const generateImageUrl = (
   image: CloudinaryImage,
   width: number = 720,
@@ -104,9 +93,6 @@ export const generateImageUrl = (
   return `https://res.cloudinary.com/${cloud}/image/upload/f_auto,q_auto,w_${width}/v${image.version}/${image.publicId}`;
 };
 
-/**
- * Transform image data to include URL for response
- */
 export const transformImageForResponse = (
   image: CloudinaryImage,
   width: number = 720,
@@ -117,9 +103,6 @@ export const transformImageForResponse = (
   };
 };
 
-/**
- * Transform array of images for response
- */
 export const transformImagesForResponse = (
   images: CloudinaryImage[],
   width: number = 720,

@@ -1,91 +1,97 @@
-import Board from '../../../models/boardModel';
-import { generateSlug } from '../../../utils/slug';
-import { BoardResponse } from '../types/boardTypes';
+import Board from "../../../models/boardModel";
+import { uploading } from "../../../utils/cloudinaryUpload";
+import { generateSlug } from "../../../utils/slug";
+import { uploadImageBuffer } from "../../question/helper/cloudinaryHelper";
+import { BoardResponse, I18nString } from "../types/boardTypes";
+import fs from "fs/promises";
 
-const createBoard = async (name: string): Promise<BoardResponse> => {
+const createBoard = async (
+  name: I18nString,
+  file?: Express.Multer.File
+): Promise<BoardResponse> => {
   try {
-    const slug = generateSlug(name);
+    const slug = generateSlug(name.en);
 
-    // Check if board with same slug already exists
     const existingBoard = await Board.findOne({ slug });
     if (existingBoard) {
       return {
         success: false,
         statusCode: 400,
-        message: 'Board with this name already exists',
+        message: "Board with this name already exists",
       };
     }
 
-    // Get the current max order to assign next order
     const maxOrderBoard = await Board.findOne().sort({ order: -1 });
     const nextOrder = maxOrderBoard ? (maxOrderBoard.order || 0) + 1 : 0;
 
+    let image: any | null = await uploading(file);
+
+
     const board = await Board.create({
-      name,
+      name, 
       slug,
       order: nextOrder,
       isActive: true,
+      image: image ?? null,
     });
 
     return {
       success: true,
       statusCode: 201,
-      message: 'Board created successfully',
+      message: "Board created successfully",
       data: board,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while creating board',
+      message: "Error occurred while creating board",
       error: error?.message || error,
     };
   }
 };
 
-const updateBoard = async (id: string, name: string): Promise<BoardResponse> => {
+const updateBoard = async (
+  id: string,
+  updates: {
+    name?: I18nString;
+    order?: number;
+    isActive?: boolean;
+    image?: any | null;
+  },
+  file?: Express.Multer.File
+): Promise<BoardResponse> => {
   try {
     const board = await Board.findById(id);
     if (!board) {
-      return {
-        success: false,
-        statusCode: 404,
-        message: 'Board not found',
-      };
+      return { success: false, statusCode: 404, message: "Board not found" };
+    }
+    const updatePayload: any = {};
+
+    if (updates.name) {
+      const slug = generateSlug(updates?.name?.en);
+      updatePayload.name = updates.name;
+      updatePayload.slug = slug;
     }
 
-    const slug = generateSlug(name);
-
-    // Check if another board with same slug exists
-    const existingBoard = await Board.findOne({ slug, _id: { $ne: id } });
-    if (existingBoard) {
-      return {
-        success: false,
-        statusCode: 400,
-        message: 'Board with this name already exists',
-      };
-    }
-
-    const updatedBoard = await Board.findByIdAndUpdate(
-      id,
-      {
-        name,
-        slug,
-      },
-      { new: true },
-    );
+    if (typeof updates.order === "number") updatePayload.order = updates.order;
+    if (typeof updates.isActive === "boolean") updatePayload.isActive = updates.isActive;
+    
+    let image: any | null = await uploading(file);
+    updatePayload.image = image ?? null;
+    const updatedBoard = await Board.findByIdAndUpdate(id, updatePayload, { new: true });
 
     return {
       success: true,
       statusCode: 200,
-      message: 'Board updated successfully',
+      message: "Board updated successfully",
       data: updatedBoard,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while updating board',
+      message: "Error occurred while updating board",
       error: error?.message || error,
     };
   }
@@ -94,18 +100,17 @@ const updateBoard = async (id: string, name: string): Promise<BoardResponse> => 
 const getAllBoards = async (): Promise<BoardResponse> => {
   try {
     const boards = await Board.find().sort({ order: 1 });
-
     return {
       success: true,
       statusCode: 200,
-      message: 'Boards fetched successfully',
+      message: "Boards fetched successfully",
       data: boards,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while fetching boards',
+      message: "Error occurred while fetching boards",
       error: error?.message || error,
     };
   }
@@ -114,26 +119,20 @@ const getAllBoards = async (): Promise<BoardResponse> => {
 const getBoardById = async (id: string): Promise<BoardResponse> => {
   try {
     const board = await Board.findById(id);
-
     if (!board) {
-      return {
-        success: false,
-        statusCode: 404,
-        message: 'Board not found',
-      };
+      return { success: false, statusCode: 404, message: "Board not found" };
     }
-
     return {
       success: true,
       statusCode: 200,
-      message: 'Board fetched successfully',
+      message: "Board fetched successfully",
       data: board,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while fetching board',
+      message: "Error occurred while fetching board",
       error: error?.message || error,
     };
   }
@@ -142,26 +141,20 @@ const getBoardById = async (id: string): Promise<BoardResponse> => {
 const getBoardBySlug = async (slug: string): Promise<BoardResponse> => {
   try {
     const board = await Board.findOne({ slug });
-
     if (!board) {
-      return {
-        success: false,
-        statusCode: 404,
-        message: 'Board not found',
-      };
+      return { success: false, statusCode: 404, message: "Board not found" };
     }
-
     return {
       success: true,
       statusCode: 200,
-      message: 'Board fetched successfully',
+      message: "Board fetched successfully",
       data: board,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while fetching board',
+      message: "Error occurred while fetching board",
       error: error?.message || error,
     };
   }
@@ -170,32 +163,26 @@ const getBoardBySlug = async (slug: string): Promise<BoardResponse> => {
 const deleteBoard = async (id: string): Promise<BoardResponse> => {
   try {
     const board = await Board.findByIdAndDelete(id);
-
     if (!board) {
-      return {
-        success: false,
-        statusCode: 404,
-        message: 'Board not found',
-      };
+      return { success: false, statusCode: 404, message: "Board not found" };
     }
-
     return {
       success: true,
       statusCode: 200,
-      message: 'Board deleted successfully',
+      message: "Board deleted successfully",
       data: board,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while deleting board',
+      message: "Error occurred while deleting board",
       error: error?.message || error,
     };
   }
 };
 
-const boardServices = {
+export default {
   createBoard,
   updateBoard,
   getAllBoards,
@@ -204,5 +191,4 @@ const boardServices = {
   deleteBoard,
 };
 
-export default boardServices;
 

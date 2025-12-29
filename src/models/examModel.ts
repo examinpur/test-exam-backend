@@ -1,4 +1,13 @@
 import mongoose from 'mongoose';
+import { imageSchema } from './questionModel';
+
+const i18nStringSchema = new mongoose.Schema(
+  {
+    en: { type: String, required: true },
+    hi: { type: String },
+  },
+  { _id: false }
+);
 
 const examSchema = new mongoose.Schema(
   {
@@ -7,10 +16,8 @@ const examSchema = new mongoose.Schema(
       ref: 'Board',
       required: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
+    name: { type: i18nStringSchema, required: true },
+    image: { type: imageSchema, default: null },
     slug: {
       type: String,
       required: true,

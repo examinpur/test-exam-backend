@@ -1,8 +1,10 @@
 import { Types } from 'mongoose';
+import { I18nString } from '../../board/types/boardTypes';
+
 
 export type ExamData = {
   boardId: Types.ObjectId | string;
-  name: string;
+  name: I18nString;
   slug: string;
   order?: number;
   isActive?: boolean;

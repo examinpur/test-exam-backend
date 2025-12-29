@@ -1,10 +1,14 @@
-import { Types } from 'mongoose';
+export type I18nString = {
+  en: string;
+  hi?: string;
+};
 
 export type BoardData = {
-  name: string;
+  name: I18nString;
   slug: string;
   order?: number;
   isActive?: boolean;
+  image?: any | null;
 };
 
 export type BoardResponse = {
@@ -14,4 +18,3 @@ export type BoardResponse = {
   data?: any;
   error?: any;
 };
-

@@ -2,13 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import multer from 'multer';
 
-// Create uploads directory if it doesn't exist
 const uploadDir = path.join(__dirname, '../public/uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Configure storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, uploadDir);
@@ -20,12 +18,11 @@ const storage = multer.diskStorage({
   },
 });
 
-// Updated file filter to allow xlsx, xls, csv (and optionally images)
 const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
   const allowedMimeTypes = [
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
-    'application/vnd.ms-excel', // .xls
-    'text/csv', // .csv
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
+    'application/vnd.ms-excel',
+    'text/csv',
     'image/png',
     'image/jpeg',
     'image/jpg'
@@ -38,7 +35,6 @@ const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCa
   }
 };
 
-// Create multer instance
 const upload = multer({
   storage,
   fileFilter,

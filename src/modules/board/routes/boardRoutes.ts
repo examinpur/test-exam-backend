@@ -1,15 +1,18 @@
 import { Router } from 'express';
 import boardController from '../controller/boardController';
+import upload from '../../../middlewares/upload';
 
 const router = Router();
 
 router.post(
   '/',
+  upload.single('file'),
   boardController.createBoard,
 );
 
-router.put(
+router.patch(
   '/:id',
+  upload.single('file'),
   boardController.updateBoard,
 );
 

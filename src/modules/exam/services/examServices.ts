@@ -3,10 +3,11 @@ import Exam from '../../../models/examModel';
 import Board from '../../../models/boardModel';
 import { generateSlug } from '../../../utils/slug';
 import { ExamResponse } from '../types/examTypes';
+import { uploading } from '../../../utils/cloudinaryUpload';
+import { I18nString } from '../../board/types/boardTypes';
 
-const createExam = async (boardId: string, name: string): Promise<ExamResponse> => {
+const createExam = async (boardId: string, name: I18nString , file?: Express.Multer.File): Promise<ExamResponse> => {
   try {
-    // Validate board exists
     const board = await Board.findById(boardId);
     if (!board) {
       return {
@@ -16,10 +17,9 @@ const createExam = async (boardId: string, name: string): Promise<ExamResponse> 
       };
     }
 
-    const examSlug = generateSlug(name);
+    const examSlug = generateSlug(name?.en);
     const boardSlug = board.slug;
 
-    // Check if exam with same slug already exists for this board
     const existingExam = await Exam.findOne({ boardId, slug: examSlug });
     if (existingExam) {
       return {
@@ -29,14 +29,13 @@ const createExam = async (boardId: string, name: string): Promise<ExamResponse> 
       };
     }
 
-    // Create pathSlugs and pathKey
     const pathSlugs = [boardSlug, examSlug];
     const pathKey = `${boardSlug}/${examSlug}`;
 
-    // Get the current max order for this board
     const maxOrderExam = await Exam.findOne({ boardId }).sort({ order: -1 });
     const nextOrder = maxOrderExam ? (maxOrderExam.order || 0) + 1 : 0;
-
+    let image: any | null = await uploading(file);
+    
     const exam = await Exam.create({
       boardId,
       name,
@@ -46,6 +45,7 @@ const createExam = async (boardId: string, name: string): Promise<ExamResponse> 
       boardSlug,
       pathSlugs,
       pathKey,
+      image
     });
 
     return {
@@ -64,86 +64,85 @@ const createExam = async (boardId: string, name: string): Promise<ExamResponse> 
   }
 };
 
-const updateExam = async (id: string, boardId: string | undefined, name: string | undefined): Promise<ExamResponse> => {
+const updateExam = async (
+  id: string,
+  updates: {
+    boardId?: string;
+    name?: I18nString;
+    order?: number;
+    isActive?: boolean;
+  },
+  file?: Express.Multer.File
+): Promise<ExamResponse> => {
   try {
     const exam = await Exam.findById(id);
     if (!exam) {
-      return {
-        success: false,
-        statusCode: 404,
-        message: 'Exam not found',
-      };
+      return { success: false, statusCode: 404, message: "Exam not found" };
     }
 
-    let updateData: any = {};
+    const updateData: any = {};
+
     let newBoardId: mongoose.Types.ObjectId | string = exam.boardId;
-    let newName = exam.name;
+    let boardSlug = exam.boardSlug;
 
-    // If boardId is provided, validate it exists
-    if (boardId) {
-      const board = await Board.findById(boardId);
+    if (updates.boardId) {
+      const board = await Board.findById(updates.boardId);
       if (!board) {
-        return {
-          success: false,
-          statusCode: 404,
-          message: 'Board not found',
-        };
+        return { success: false, statusCode: 404, message: "Board not found" };
       }
-      const boardObjectId = new mongoose.Types.ObjectId(boardId);
+
+      const boardObjectId = new mongoose.Types.ObjectId(updates.boardId);
       newBoardId = boardObjectId;
+      boardSlug = board.slug;
+
       updateData.boardId = boardObjectId;
-      updateData.boardSlug = board.slug;
+      updateData.boardSlug = boardSlug;
     }
 
-    // If name is provided, update slug and path fields
-    if (name) {
-      newName = name;
-      const examSlug = generateSlug(name);
-      const boardSlug = updateData.boardSlug || exam.boardSlug;
+    if (updates.name) {
+      const examSlug = generateSlug(updates.name.en);
 
-      // Check if another exam with same slug exists for this board
       const existingExam = await Exam.findOne({
         boardId: newBoardId,
         slug: examSlug,
         _id: { $ne: id },
       });
+
       if (existingExam) {
         return {
           success: false,
           statusCode: 400,
-          message: 'Exam with this name already exists for this board',
+          message: "Exam with this name already exists for this board",
         };
       }
 
-      updateData.name = name;
+      updateData.name = updates.name;     
       updateData.slug = examSlug;
       updateData.pathSlugs = [boardSlug, examSlug];
       updateData.pathKey = `${boardSlug}/${examSlug}`;
-    } else if (boardId) {
-      // If only boardId is updated, we need to update path fields with existing slug
-      const examSlug = exam.slug;
-      const boardSlug = updateData.boardSlug;
-      updateData.pathSlugs = [boardSlug, examSlug];
-      updateData.pathKey = `${boardSlug}/${examSlug}`;
+    } else if (updates.boardId) {
+      updateData.pathSlugs = [boardSlug, exam.slug];
+      updateData.pathKey = `${boardSlug}/${exam.slug}`;
     }
 
-    const updatedExam = await Exam.findByIdAndUpdate(
-      id,
-      updateData,
-      { new: true },
-    );
+    if (typeof updates.order === "number") updateData.order = updates.order;
+    if (typeof updates.isActive === "boolean") updateData.isActive = updates.isActive;
+
+    let image: any | null = await uploading(file);
+    updateData.image = image;
+    const updatedExam = await Exam.findByIdAndUpdate(id, updateData, { new: true });
 
     return {
       success: true,
       statusCode: 200,
-      message: 'Exam updated successfully',
+      message: "Exam updated successfully",
       data: updatedExam,
     };
   } catch (error: any) {
     return {
       success: false,
       statusCode: 500,
-      message: 'Error occurred while updating exam',
+      message: "Error occurred while updating exam",
       error: error?.message || error,
     };
   }
