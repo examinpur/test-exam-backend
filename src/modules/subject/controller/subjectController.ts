@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import logger from '../../../utils/logger';
 import subjectServices from '../services/subjectServices';
 import { validateSubject, validateSubjectUpdate } from '../validation/subjectValidator';
+import { normalizeI18nName } from '../../board/helper/board';
 
 const createSubject = async (req: Request, res: Response) => {
   try {
-    const { boardId, examId, name } = req.body;
+    const { boardId, examId } = req.body;
+    const name = normalizeI18nName(req.body.name);
 
     const validation = validateSubject({ boardId, examId, name });
     if (!validation.success) {
@@ -35,18 +37,19 @@ const createSubject = async (req: Request, res: Response) => {
 const updateSubject = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { boardId, examId, name } = req.body;
+    const { boardId, examId } = req.body;
 
-    // At least one field should be provided
-    if (!boardId && !examId && !name) {
-      return res.status(400).json({
-        success: false,
-        statusCode: 400,
-        message: 'At least one field (boardId, examId, or name) is required for update',
-      });
-    }
+    const name = normalizeI18nName(req.body.name);
 
-    const validation = validateSubjectUpdate({ boardId, examId, name });
+    const order =
+      req.body.order !== undefined ? Number(req.body.order) : undefined;
+
+    const isActive =
+      req.body.isActive !== undefined
+        ? req.body.isActive === "true" || req.body.isActive === true
+        : undefined;
+
+    const validation = validateSubjectUpdate({ boardId, examId, name, order, isActive });
     if (!validation.success) {
       return res.status(400).json({
         success: false,
@@ -56,7 +59,9 @@ const updateSubject = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await subjectServices.updateSubject(id, boardId, examId, name);
+    const result = await subjectServices.updateSubject(
+       id,
+      { boardId, examId, name, order, isActive });
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {

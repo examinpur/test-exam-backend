@@ -150,7 +150,8 @@ const updateExam = async (
 
 const getAllExams = async (): Promise<ExamResponse> => {
   try {
-    const exams = await Exam.find().sort({ order: 1 });
+    const exams = await Exam.find().sort({ order: 1 })
+                        .populate('boardId', 'name order isActive');
 
     return {
       success: true,

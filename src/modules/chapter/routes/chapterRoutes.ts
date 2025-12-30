@@ -8,7 +8,7 @@ router.post(
   chapterController.createChapter,
 );
 
-router.put(
+router.patch(
   '/:id',
   chapterController.updateChapter,
 );

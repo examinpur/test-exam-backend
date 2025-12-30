@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { imageSchema } from './questionModel';
 
 
 const i18nStringSchema = new mongoose.Schema(
@@ -33,7 +32,6 @@ const chapterSchema = new mongoose.Schema(
       required: true,
     },
    name: { type: i18nStringSchema, required: true },
-   image: { type: imageSchema, default: null },
     slug: {
       type: String,
       required: true,

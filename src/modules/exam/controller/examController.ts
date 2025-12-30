@@ -49,14 +49,6 @@ const updateExam = async (req: Request, res: Response) => {
         ? req.body.isActive === "true" || req.body.isActive === true
         : undefined;
 
-    if (!boardId && !name && order === undefined && isActive === undefined && !req.file) {
-      return res.status(400).json({
-        success: false,
-        statusCode: 400,
-        message: "At least one field is required for update",
-      });
-    }
-
     const validation = validateExamUpdate({ boardId, name, order, isActive });
     if (!validation.success) {
       return res.status(400).json({

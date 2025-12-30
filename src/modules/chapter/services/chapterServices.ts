@@ -3,6 +3,7 @@ import ChapterGroup from '../../../models/chapterGroupModel';
 import Subject from '../../../models/subjectModel';
 import { generateSlug } from '../../../utils/slug';
 import { ChapterResponse } from '../types/chapterTypes';
+import { I18nString } from '../../board/types/boardTypes';
 
 type ChapterPathArgs = {
   boardSlug: string;
@@ -18,10 +19,10 @@ const createChapter = async (
   examId: string,
   subjectId: string,
   chapterGroupId: string,
-  name: string,
+  name: I18nString,
 ): Promise<ChapterResponse> => {
   try {
-    // Validate chapterGroup exists and get subject/exam/board info
+
     const chapterGroup = await ChapterGroup.findById(chapterGroupId);
     if (!chapterGroup) {
       return {
@@ -31,7 +32,6 @@ const createChapter = async (
       };
     }
 
-    // Verify chapterGroup belongs to the subject, exam, and board
     if (chapterGroup.subjectId.toString() !== subjectId) {
       return {
         success: false,
@@ -56,13 +56,12 @@ const createChapter = async (
       };
     }
 
-    const chapterSlug = generateSlug(name);
+    const chapterSlug = generateSlug(name?.en);
     const boardSlug = chapterGroup.boardSlug;
     const examSlug = chapterGroup.examSlug;
     const subjectSlug = chapterGroup.subjectSlug;
     const chapterGroupSlug = chapterGroup.slug;
 
-    // Check if chapter with same slug already exists for this chapterGroup
     const existingChapter = await Chapter.findOne({ chapterGroupId, slug: chapterSlug });
     if (existingChapter) {
       return {
@@ -72,11 +71,9 @@ const createChapter = async (
       };
     }
 
-    // Create pathSlugs and pathKey
     const pathSlugs = [boardSlug, examSlug, subjectSlug, chapterGroupSlug, chapterSlug];
     const pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}`;
 
-    // Get the current max order for this chapterGroup
     const maxOrderChapter = await Chapter.findOne({ chapterGroupId }).sort({ order: -1 });
     const nextOrder = maxOrderChapter ? (maxOrderChapter.order || 0) + 1 : 0;
 
@@ -119,7 +116,9 @@ const updateChapter = async (
   examId: string | undefined,
   subjectId: string | undefined,
   chapterGroupId: string | undefined,
-  name: string | undefined,
+  name: I18nString | undefined,
+  order: number | undefined,
+  isActive: boolean | undefined
 ): Promise<ChapterResponse> => {
   try {
     const chapter = await Chapter.findById(id);
@@ -138,7 +137,6 @@ const updateChapter = async (
     let newChapterGroupId = chapter.chapterGroupId.toString();
     let newName = chapter.name;
 
-    // If chapterGroupId is provided, validate it exists
     if (chapterGroupId) {
       const chapterGroup = await ChapterGroup.findById(chapterGroupId);
       if (!chapterGroup) {
@@ -149,7 +147,6 @@ const updateChapter = async (
         };
       }
 
-      // Verify relationships
       if (subjectId && chapterGroup.subjectId.toString() !== subjectId) {
         return {
           success: false,
@@ -187,7 +184,6 @@ const updateChapter = async (
       updateData.examSlug = chapterGroup.examSlug;
       updateData.boardSlug = chapterGroup.boardSlug;
     } else if (subjectId || examId || boardId) {
-      // If only subjectId/examId/boardId is provided, get current chapterGroup
       const chapterGroup = await ChapterGroup.findById(chapter.chapterGroupId);
       if (chapterGroup) {
         if (subjectId && chapterGroup.subjectId.toString() !== subjectId) {
@@ -214,10 +210,9 @@ const updateChapter = async (
       }
     }
 
-    // If name is provided, update slug and path fields
     if (name) {
       newName = name;
-      const chapterSlug = generateSlug(name);
+      const chapterSlug = generateSlug(name?.en);
       const chapterGroup = await ChapterGroup.findById(newChapterGroupId);
       if (!chapterGroup) {
         return {
@@ -232,7 +227,6 @@ const updateChapter = async (
       const subjectSlug = updateData.subjectSlug || chapterGroup.subjectSlug;
       const chapterGroupSlug = updateData.chapterGroupSlug || chapterGroup.slug;
 
-      // Check if another chapter with same slug exists for this chapterGroup
       const existingChapter = await Chapter.findOne({
         chapterGroupId: newChapterGroupId,
         slug: chapterSlug,
@@ -251,7 +245,6 @@ const updateChapter = async (
       updateData.pathSlugs = [boardSlug, examSlug, subjectSlug, chapterGroupSlug, chapterSlug];
       updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}`;
     } else if (chapterGroupId || subjectId || examId || boardId) {
-      // If only chapterGroupId/subjectId/examId/boardId is updated, we need to update path fields with existing slug
       const chapterGroup = await ChapterGroup.findById(newChapterGroupId);
       if (!chapterGroup) {
         return {
@@ -268,6 +261,14 @@ const updateChapter = async (
       const chapterGroupSlug = updateData.chapterGroupSlug || chapterGroup.slug;
       updateData.pathSlugs = [boardSlug, examSlug, subjectSlug, chapterGroupSlug, chapterSlug];
       updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}/${chapterGroupSlug}/${chapterSlug}`;
+    }
+
+        if (order !== undefined) {
+      updateData.order = order;
+    }
+
+    if (isActive !== undefined) {
+      updateData.isActive = isActive;
     }
 
     const updatedChapter = await Chapter.findByIdAndUpdate(
@@ -294,7 +295,12 @@ const updateChapter = async (
 
 const getAllChapters = async (): Promise<ChapterResponse> => {
   try {
-    const chapters = await Chapter.find().sort({ order: 1 });
+    const chapters = await Chapter.find().sort({ order: 1 })
+                    .populate('chapterGroupId', 'name order isActive')
+                    .populate('boardId', 'name order isActive')
+                    .populate('examId', 'name order isActive')
+                    .populate('subjectId', 'name order isActive');
+
 
     return {
       success: true,

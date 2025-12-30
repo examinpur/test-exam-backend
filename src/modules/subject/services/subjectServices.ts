@@ -2,10 +2,10 @@ import Subject from '../../../models/subjectModel';
 import Exam from '../../../models/examModel';
 import { generateSlug } from '../../../utils/slug';
 import { SubjectResponse } from '../types/subjectTypes';
+import { I18nString } from '../../board/types/boardTypes';
 
-const createSubject = async (boardId: string, examId: string, name: string): Promise<SubjectResponse> => {
+const createSubject = async (boardId: string, examId: string, name: I18nString): Promise<SubjectResponse> => {
   try {
-    // Validate exam exists and get board info
     const exam = await Exam.findById(examId);
     if (!exam) {
       return {
@@ -15,7 +15,6 @@ const createSubject = async (boardId: string, examId: string, name: string): Pro
       };
     }
 
-    // Verify exam belongs to the board
     if (exam.boardId.toString() !== boardId) {
       return {
         success: false,
@@ -24,11 +23,10 @@ const createSubject = async (boardId: string, examId: string, name: string): Pro
       };
     }
 
-    const subjectSlug = generateSlug(name);
+    const subjectSlug = generateSlug(name?.en);
     const boardSlug = exam.boardSlug;
     const examSlug = exam.slug;
 
-    // Check if subject with same slug already exists for this exam
     const existingSubject = await Subject.findOne({ examId, slug: subjectSlug });
     if (existingSubject) {
       return {
@@ -38,11 +36,9 @@ const createSubject = async (boardId: string, examId: string, name: string): Pro
       };
     }
 
-    // Create pathSlugs and pathKey
     const pathSlugs = [boardSlug, examSlug, subjectSlug];
     const pathKey = `${boardSlug}/${examSlug}/${subjectSlug}`;
 
-    // Get the current max order for this exam
     const maxOrderSubject = await Subject.findOne({ examId }).sort({ order: -1 });
     const nextOrder = maxOrderSubject ? (maxOrderSubject.order || 0) + 1 : 0;
 
@@ -77,9 +73,13 @@ const createSubject = async (boardId: string, examId: string, name: string): Pro
 
 const updateSubject = async (
   id: string,
-  boardId: string | undefined,
-  examId: string | undefined,
-  name: string | undefined,
+  updates: {
+    boardId?: string;
+    examId?: string;
+    name?: I18nString;
+    order?: number;
+    isActive?: boolean;
+  },
 ): Promise<SubjectResponse> => {
   try {
     const subject = await Subject.findById(id);
@@ -90,15 +90,14 @@ const updateSubject = async (
         message: 'Subject not found',
       };
     }
-
+    console.log('updates', updates);
     let updateData: any = {};
     let newBoardId = subject.boardId.toString();
     let newExamId = subject.examId.toString();
     let newName = subject.name;
 
-    // If examId is provided, validate it exists and get board info
-    if (examId) {
-      const exam = await Exam.findById(examId);
+    if (updates.examId) {
+      const exam = await Exam.findById(updates.examId);
       if (!exam) {
         return {
           success: false,
@@ -107,8 +106,7 @@ const updateSubject = async (
         };
       }
 
-      // If boardId is also provided, verify they match
-      if (boardId && exam.boardId.toString() !== boardId) {
+      if (updates.boardId && exam.boardId.toString() !== updates.boardId) {
         return {
           success: false,
           statusCode: 400,
@@ -117,15 +115,14 @@ const updateSubject = async (
       }
 
       newBoardId = exam.boardId.toString();
-      newExamId = examId;
-      updateData.examId = examId;
+      newExamId = updates.examId;
+      updateData.examId = updates.examId;
       updateData.boardId = exam.boardId;
       updateData.boardSlug = exam.boardSlug;
       updateData.examSlug = exam.slug;
-    } else if (boardId) {
-      // If only boardId is provided, verify current exam belongs to it
+    } else if (updates.boardId) {
       const exam = await Exam.findById(subject.examId);
-      if (exam && exam.boardId.toString() !== boardId) {
+      if (exam && exam.boardId.toString() !== updates.boardId) {
         return {
           success: false,
           statusCode: 400,
@@ -133,11 +130,9 @@ const updateSubject = async (
         };
       }
     }
-
-    // If name is provided, update slug and path fields
-    if (name) {
-      newName = name;
-      const subjectSlug = generateSlug(name);
+    if (updates.name) {
+      newName = updates.name;
+      const subjectSlug = generateSlug(updates.name.en);
       const exam = await Exam.findById(newExamId);
       if (!exam) {
         return {
@@ -150,7 +145,6 @@ const updateSubject = async (
       const boardSlug = updateData.boardSlug || exam.boardSlug;
       const examSlug = updateData.examSlug || exam.slug;
 
-      // Check if another subject with same slug exists for this exam
       const existingSubject = await Subject.findOne({
         examId: newExamId,
         slug: subjectSlug,
@@ -164,12 +158,11 @@ const updateSubject = async (
         };
       }
 
-      updateData.name = name;
+      updateData.name = updates.name;
       updateData.slug = subjectSlug;
       updateData.pathSlugs = [boardSlug, examSlug, subjectSlug];
       updateData.pathKey = `${boardSlug}/${examSlug}/${subjectSlug}`;
-    } else if (examId || boardId) {
-      // If only examId/boardId is updated, we need to update path fields with existing slug
+    } else if (updates.examId || updates.boardId) {
       const exam = await Exam.findById(newExamId);
       if (!exam) {
         return {
@@ -210,7 +203,7 @@ const updateSubject = async (
 
 const getAllSubjects = async (): Promise<SubjectResponse> => {
   try {
-    const subjects = await Subject.find().sort({ order: 1 });
+    const subjects = await Subject.find().sort({ order: 1 })
 
     return {
       success: true,

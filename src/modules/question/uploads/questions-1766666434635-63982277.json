@@ -1,0 +1,133 @@
+[
+    {
+        "_id": "Physics",
+        "title": "Physics",
+        "questions": [
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-001",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "easy",
+                "topic": "vector-addition-and-subtraction",
+                "type": "mcq",
+                "question": {
+                    "en": {
+                        "content": "If a = (1, 2, 2) and b = (2, -1, 1), what is a + b?",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee","ff8f185d15f6","ff81f5f30765","ff89bae43379"],
+                        "options": [
+                            {
+                                "identifier": "A",
+                                "content": "(3,1,3)",
+                                "images": ["ff95dc7117ee"]
+                            },
+                            {
+                                "identifier": "B",
+                                "content": "(1,1,1)",
+                                "images": ["ff8f185d15f6"]
+                            },
+                            {
+                                "identifier": "C",
+                                "content": "(2,1,2)",
+                                "images": ["ff81f5f30765"]
+                            },
+                            {
+                                "identifier": "D",
+                                "content": "(0,3,1)",
+                                "images": ["ff89bae43379"]
+                            }
+                        ],
+                        "correct_options": [
+                            "A"
+                        ],
+                        "explanation": "Add components: (1+2,2-1,2+1) = (3,1,3).",
+                        "explanationImages": ["ff8ca2ef0418"]
+                    }
+                },
+                "permalink": "phy-va-001.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-7th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Vector Add",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Compute a+b."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            },
+            {
+                "country": "in",
+                "examGroup": "cbse",
+                "question_id": "phy-va-002",
+                "exam": "class-12",
+                "marks": 4,
+                "negMarks": 1,
+                "subjectGroup": null,
+                "subject": "physics",
+                "chapterGroup": "mechanics",
+                "languages": [
+                    "en"
+                ],
+                "chapter": "vector-algebra",
+                "year": 2025,
+                "paperTitle": "Class 12 Physics Sample Paper",
+                "difficulty": "medium",
+                "topic": "scalar-dot-product-of-vectors",
+                "type": "integer",
+                "question": {
+                    "en": {
+                        "content": "If a = (1,2,3) and b = (4,0,-1), compute a·b.",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 1,
+                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1.",
+                        "explanationImages": ["ff8ca2ef0418"]
+                    },
+                    "hi":{
+                        "content": "यदि a = (1,2,3) और b = (4,0,-1) है, तो a·b का मान ज्ञात कीजिए।",
+                        "questionImages": ["ff8ca2ef0418","ff95dc7117ee"],
+                        "options": [],
+                        "correct_options": [],
+                        "answer": 1,
+                        "explanation": "1*4 + 2*0 + 3*(-1) = 4 - 3 = 1.",
+                        "explanationImages": ["ff8ca2ef0418"]
+                    }
+                },
+                "permalink": "phy-va-002.htm",
+                "timeAllotted": 120000,
+                "section": [
+                    "chapter"
+                ],
+                "paperId": "jee-main-2025-online-4th-april-morning-shift",
+                "isOutOfSyllabus": false,
+                "isBonus": false,
+                "bookmark": {
+                    "en": {
+                        "title": "Dot Product",
+                        "subTitle": "Vector Algebra",
+                        "excerpt": "Compute dot product."
+                    }
+                },
+                "yearKey": "class12-physics-2025"
+            }
+          ]
+        }
+      ]

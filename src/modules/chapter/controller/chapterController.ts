@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import logger from '../../../utils/logger';
 import chapterServices from '../services/chapterServices';
 import { validateChapter, validateChapterUpdate } from '../validation/chapterValidator';
+import { normalizeI18nName } from '../../board/helper/board';
 
 const createChapter = async (req: Request, res: Response) => {
   try {
-    const { boardId, examId, subjectId, chapterGroupId, name } = req.body;
+    const { boardId, examId, subjectId, chapterGroupId } = req.body;
+    const name = normalizeI18nName(req.body.name);
 
     const validation = validateChapter({ boardId, examId, subjectId, chapterGroupId, name });
     if (!validation.success) {
@@ -35,9 +37,10 @@ const createChapter = async (req: Request, res: Response) => {
 const updateChapter = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { boardId, examId, subjectId, chapterGroupId, name } = req.body;
+    const { boardId, examId, subjectId, chapterGroupId } = req.body;
+ 
+    const name = normalizeI18nName(req.body.name);
 
-    // At least one field should be provided
     if (!boardId && !examId && !subjectId && !chapterGroupId && !name) {
       return res.status(400).json({
         success: false,
@@ -55,8 +58,16 @@ const updateChapter = async (req: Request, res: Response) => {
         error: JSON.parse(validation?.error?.message) || validation?.error || validation,
       });
     }
+    
+    const order =
+      req.body.order !== undefined ? Number(req.body.order) : undefined;
 
-    const result = await chapterServices.updateChapter(id, boardId, examId, subjectId, chapterGroupId, name);
+    const isActive =
+      req.body.isActive !== undefined
+        ? req.body.isActive === "true" || req.body.isActive === true
+        : undefined;
+
+    const result = await chapterServices.updateChapter(id, boardId, examId, subjectId, chapterGroupId, name, order, isActive);
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {

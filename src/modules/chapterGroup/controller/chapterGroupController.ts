@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import logger from '../../../utils/logger';
 import chapterGroupServices from '../services/chapterGroupServices';
 import { validateChapterGroup, validateChapterGroupUpdate } from '../validation/chapterGroupValidator';
+import { normalizeI18nName } from '../../board/helper/board';
 
 const createChapterGroup = async (req: Request, res: Response) => {
   try {
-    const { boardId, examId, subjectId, name } = req.body;
+    const { boardId, examId, subjectId } = req.body;
+    const name = normalizeI18nName(req.body.name);
 
     const validation = validateChapterGroup({ boardId, examId, subjectId, name });
     if (!validation.success) {
@@ -35,9 +37,9 @@ const createChapterGroup = async (req: Request, res: Response) => {
 const updateChapterGroup = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { boardId, examId, subjectId, name } = req.body;
+    const { boardId, examId, subjectId } = req.body;
+    const name = normalizeI18nName(req.body.name);
 
-    // At least one field should be provided
     if (!boardId && !examId && !subjectId && !name) {
       return res.status(400).json({
         success: false,
@@ -56,7 +58,14 @@ const updateChapterGroup = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await chapterGroupServices.updateChapterGroup(id, boardId, examId, subjectId, name);
+    const order =
+      req.body.order !== undefined ? Number(req.body.order) : undefined;
+
+    const isActive =
+      req.body.isActive !== undefined
+        ? req.body.isActive 
+        : undefined;
+    const result = await chapterGroupServices.updateChapterGroup(id, boardId, examId, subjectId, name , order, isActive);
 
     return res.status(result.statusCode).json(result);
   } catch (error: any) {

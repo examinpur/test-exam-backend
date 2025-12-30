@@ -1,9 +1,10 @@
 import { z } from 'zod';
+import { i18nStringSchema } from '../../board/validation/boardValidator';
 
 const subjectSchema = z.object({
   boardId: z.string().min(1, 'Board ID is required'),
   examId: z.string().min(1, 'Exam ID is required'),
-  name: z.string().min(1, 'Name is required and cannot be empty'),
+  name: i18nStringSchema,
 });
 
 export const validateSubject = (data: any) => {
@@ -13,7 +14,7 @@ export const validateSubject = (data: any) => {
 const updateSubjectSchema = z.object({
   boardId: z.string().min(1, 'Board ID is required').optional(),
   examId: z.string().min(1, 'Exam ID is required').optional(),
-  name: z.string().min(1, 'Name is required and cannot be empty').optional(),
+  name: i18nStringSchema,
 });
 
 export const validateSubjectUpdate = (data: any) => {

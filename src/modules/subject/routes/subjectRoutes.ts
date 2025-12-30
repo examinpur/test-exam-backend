@@ -8,7 +8,7 @@ router.post(
   subjectController.createSubject,
 );
 
-router.put(
+router.patch(
   '/:id',
   subjectController.updateSubject,
 );
