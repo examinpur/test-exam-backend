@@ -9,6 +9,7 @@ import Chapter from '../../../models/chapterModel';
 import Topic from '../../../models/topicModel';
 import Question from '../../../models/questionModel';
 import logger from '../../../utils/logger';
+import { I18nString } from '../../board/types/boardTypes';
 
 interface RawQuestionOption {
   option_letter: string;
@@ -49,13 +50,16 @@ interface ImportResult {
   };
   errors: Array<{
     questionId: number;
-    board: string;
+    board: I18nString;
     reason: string;
   }>;
 }
 
-// Parse the class field to extract board names
-// e.g., "JEE MAIN + NEET + JEE ADVANCED" -> ["JEE MAIN", "NEET", "JEE ADVANCED"]
+const toI18n = (text: string, hi?: string): I18nString => ({
+  en: text,
+  ...(hi ? { hi } : {}),
+});
+
 const parseBoardsFromClass = (classField: string): string[] => {
   if (!classField) return [];
   return classField
@@ -64,9 +68,6 @@ const parseBoardsFromClass = (classField: string): string[] => {
     .filter((b) => b.length > 0);
 };
 
-// Get board name for creating (use the exam name as board name for simplicity)
-// "JEE MAIN" -> "JEE" board
-// "NEET" -> "NEET" board
 const getBoardNameFromExamName = (examName: string): string => {
   const normalized = examName.toUpperCase();
   if (normalized.includes('JEE')) {
@@ -75,11 +76,8 @@ const getBoardNameFromExamName = (examName: string): string => {
   if (normalized.includes('NEET')) {
     return 'NEET';
   }
-  // Default: use the exam name as board name
   return examName;
 };
-
-// Map question_type to kind
 const mapQuestionTypeToKind = (questionType: string): string | null => {
   if (!questionType) return 'MCQ';
   const normalized = questionType.toLowerCase();
@@ -104,7 +102,6 @@ const mapQuestionTypeToKind = (questionType: string): string | null => {
   return 'MCQ';
 };
 
-// Map level to difficulty
 const mapLevelToDifficulty = (level: string): 'easy' | 'medium' | 'hard' => {
   if (!level) return 'easy';
   const normalized = level.toLowerCase();
@@ -117,7 +114,6 @@ const mapLevelToDifficulty = (level: string): 'easy' | 'medium' | 'hard' => {
   return 'easy';
 };
 
-// Transform raw options to the schema format
 const transformOptions = (
   options: RawQuestionOption[],
 ): { options: Array<{ identifier: string; content: string; images: any[] }>; correctIdentifiers: string[] } => {
@@ -139,7 +135,6 @@ const transformOptions = (
   return { options: transformed, correctIdentifiers };
 };
 
-// Find or create board
 const findOrCreateBoard = async (examName: string, entitiesCreated: ImportResult['entitiesCreated']) => {
   const boardName = getBoardNameFromExamName(examName);
   const boardSlug = generateSlug(boardName);
@@ -150,7 +145,7 @@ const findOrCreateBoard = async (examName: string, entitiesCreated: ImportResult
     const nextOrder = maxOrderBoard ? (maxOrderBoard.order || 0) + 1 : 0;
 
     board = await Board.create({
-      name: boardName,
+      name: toI18n(boardName), 
       slug: boardSlug,
       order: nextOrder,
       isActive: true,
@@ -180,7 +175,7 @@ const findOrCreateExam = async (
 
     exam = await Exam.create({
       boardId,
-      name: examName,
+      name: toI18n(examName),
       slug: examSlug,
       order: nextOrder,
       isActive: true,
@@ -216,7 +211,7 @@ const findOrCreateSubject = async (
     subject = await Subject.create({
       boardId,
       examId,
-      name: subjectName,
+      name: toI18n(subjectName),
       slug: subjectSlug,
       order: nextOrder,
       isActive: true,
@@ -230,8 +225,6 @@ const findOrCreateSubject = async (
   }
   return subject;
 };
-
-// Find or create chapter group
 const findOrCreateChapterGroup = async (
   boardId: string,
   examId: string,
@@ -256,7 +249,7 @@ const findOrCreateChapterGroup = async (
       boardId,
       examId,
       subjectId,
-      name: chapterGroupName,
+      name: toI18n(chapterGroupName),
       slug: chapterGroupSlug,
       order: nextOrder,
       isActive: true,
@@ -272,7 +265,6 @@ const findOrCreateChapterGroup = async (
   return chapterGroup;
 };
 
-// Find or create chapter
 const findOrCreateChapter = async (
   boardId: string,
   examId: string,
@@ -300,7 +292,7 @@ const findOrCreateChapter = async (
       examId,
       subjectId,
       chapterGroupId,
-      name: chapterName,
+      name: toI18n(chapterName),
       slug: chapterSlug,
       order: nextOrder,
       isActive: true,
@@ -316,8 +308,6 @@ const findOrCreateChapter = async (
   }
   return chapter;
 };
-
-// Find or create topic
 const findOrCreateTopic = async (
   boardId: string,
   examId: string,
@@ -368,8 +358,6 @@ const findOrCreateTopic = async (
   }
   return topic;
 };
-
-// Parse file content
 const parseFile = async (filePath: string): Promise<RawQuestion[]> => {
   const ext = path.extname(filePath).toLowerCase();
 
@@ -427,26 +415,20 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
         result.failed++;
         result.errors.push({
           questionId: rawQ.question_id,
-          board: 'N/A',
+          board: toI18n('N/A'),
           reason: 'No boards found in class field',
         });
         continue;
       }
 
-      // Process for each board/exam combination
       for (const examName of boards) {
         try {
-          // Find or create board
           const board = await findOrCreateBoard(examName, result.entitiesCreated);
           const boardId = board._id.toString();
           const boardSlug = board.slug;
-
-          // Find or create exam
           const exam = await findOrCreateExam(boardId, boardSlug, examName, result.entitiesCreated);
           const examId = exam._id.toString();
           const examSlug = exam.slug;
-
-          // Find or create subject
           const subjectName = metadata.subject || 'General';
           const subject = await findOrCreateSubject(
             boardId,
@@ -459,7 +441,6 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
           const subjectId = subject._id.toString();
           const subjectSlug = subject.slug;
 
-          // Find or create chapter group (use subject name as default chapter group)
           const chapterGroupName = `${subjectName} Chapters`;
           const chapterGroup = await findOrCreateChapterGroup(
             boardId,
@@ -474,7 +455,6 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
           const chapterGroupId = chapterGroup._id.toString();
           const chapterGroupSlug = chapterGroup.slug;
 
-          // Find or create chapter
           const chapterName = metadata.chapter || 'General Chapter';
           const chapter = await findOrCreateChapter(
             boardId,
@@ -491,7 +471,6 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
           const chapterId = chapter._id.toString();
           const chapterSlug = chapter.slug;
 
-          // Find or create topic (optional)
           const topicName = metadata.topic || '';
           const topic = await findOrCreateTopic(
             boardId,
@@ -510,22 +489,18 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
           const topicId = topic?._id?.toString() || undefined;
           const topicSlug = topic?.slug || undefined;
 
-          // Map question type to kind
           const kind = mapQuestionTypeToKind(metadata.question_type);
           if (!kind) {
             result.skipped++;
             result.errors.push({
               questionId: rawQ.question_id,
-              board: examName,
+              board: toI18n(examName),
               reason: `Unsupported question type: ${metadata.question_type}`,
             });
             continue;
           }
 
-          // Transform options
           const { options, correctIdentifiers } = transformOptions(rawQ.options);
-
-          // Build prompt
           const prompt = {
             en: {
               content: rawQ.question_text || '',
@@ -535,17 +510,12 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
               explanationImages: (rawQ.solution_images || []).map((url) => ({ url })),
             },
           };
-
-          // Build correct answer
           let correct: any = null;
           if (kind === 'MCQ' || kind === 'MSQ' || kind === 'TRUE_FALSE') {
             correct = { identifiers: correctIdentifiers };
           }
-
-          // Generate slug
           const questionSlug = generateUniqueQuestionSlug(rawQ.question_text, rawQ.question_id);
 
-          // Build path data based on topic or chapter
           let pathKey: string;
           let pathSlugs: string[];
 
@@ -557,14 +527,12 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
             pathSlugs = [...chapter.pathSlugs, questionSlug];
           }
 
-          // Check if question already exists
           const existingQuestion = await Question.findOne({ pathKey });
           if (existingQuestion) {
             result.skipped++;
             continue;
           }
 
-          // Create question
           const questionData = {
             boardId,
             examId,
@@ -597,7 +565,7 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
           result.failed++;
           result.errors.push({
             questionId: rawQ.question_id,
-            board: examName,
+            board: toI18n(examName),
             reason: error?.message || String(error),
           });
           logger.error(`Error importing question ${rawQ.question_id} for board ${examName}: ${error?.message}`);
@@ -612,5 +580,4 @@ export const importQuestionsFromFile = async (filePath: string): Promise<ImportR
   }
 };
 
-// Export for use in controllers
 export default importQuestionsFromFile;
