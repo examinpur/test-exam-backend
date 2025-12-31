@@ -296,10 +296,10 @@ const updateChapter = async (
 const getAllChapters = async (): Promise<ChapterResponse> => {
   try {
     const chapters = await Chapter.find().sort({ order: 1 })
-                    .populate('chapterGroupId', 'name order isActive')
-                    .populate('boardId', 'name order isActive')
-                    .populate('examId', 'name order isActive')
-                    .populate('subjectId', 'name order isActive');
+                    .populate('chapterGroupId', '_id name order isActive')
+                    .populate('boardId', '_id name order isActive')
+                    .populate('examId', '_id name order isActive')
+                    .populate('subjectId', '_id name order isActive');
 
 
     return {
@@ -388,7 +388,11 @@ const getChapterByPath = async (args: ChapterPathArgs): Promise<ChapterResponse>
     const chapter = await Chapter.findOne({
       pathKey,
       ...(onlyActive ? { isActive: true } : {}),
-    });
+    })
+    .populate('chapterGroupId', '_id name order isActive')
+                    .populate('boardId', '_id name order isActive')
+                    .populate('examId', '_id name order isActive')
+                    .populate('subjectId', '_id name order isActive');
 
     if (!chapter) {
       return {
@@ -416,7 +420,11 @@ const getChapterByPath = async (args: ChapterPathArgs): Promise<ChapterResponse>
 
 const getChaptersByChapterGroupId = async (chapterGroupId: string): Promise<ChapterResponse> => {
   try {
-    const chapters = await Chapter.find({ chapterGroupId }).sort({ order: 1 });
+    const chapters = await Chapter.find({ chapterGroupId }).sort({ order: 1 })
+                    .populate('chapterGroupId', '_id name order isActive')
+                    .populate('boardId', '_id name order isActive')
+                    .populate('examId', '_id name order isActive')
+                    .populate('subjectId', '_id name order isActive');
 
     return {
       success: true,

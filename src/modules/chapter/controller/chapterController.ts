@@ -86,7 +86,6 @@ const getChapters = async (req: Request, res: Response) => {
   try {
 
     const { chapterGroupId, boardSlug , examSlug, subjectSlug, chapterGroupSlug, chapterSlug , slug } = req.query;
-
     let result;
    if (boardSlug && examSlug && subjectSlug && chapterGroupSlug && chapterSlug) {
   result = await chapterServices.getChapterByPath({
@@ -99,7 +98,7 @@ const getChapters = async (req: Request, res: Response) => {
   }) 
  } else if (chapterGroupId) {
       result = await chapterServices.getChaptersByChapterGroupId(chapterGroupId as string);
-    }  else if (slug){
+    }  else if (slug && !chapterGroupSlug) {
       result = await chapterServices.getChapterBySlug(slug as string);
     }else {
       result = await chapterServices.getAllChapters();

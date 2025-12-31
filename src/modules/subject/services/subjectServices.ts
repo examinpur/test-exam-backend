@@ -90,7 +90,6 @@ const updateSubject = async (
         message: 'Subject not found',
       };
     }
-    console.log('updates', updates);
     let updateData: any = {};
     let newBoardId = subject.boardId.toString();
     let newExamId = subject.examId.toString();

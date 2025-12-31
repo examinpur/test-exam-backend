@@ -150,7 +150,6 @@ const deleteExam = async (req: Request, res: Response) => {
 const getExamByBoardId = async (req: Request, res: Response) => {
   try {
     const { boardId } = req.params;
-    console.log(boardId);
     const result = await examServices.getExamsByBoardId(boardId as string);
 
     return res.status(result.statusCode).json(result);

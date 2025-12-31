@@ -132,15 +132,23 @@ const buildReferenceMaps = async (dataset: any[]): Promise<ReferenceMaps> => {
   if (chapterPathKeys.size > 0) or.push({ pathKey: { $in: Array.from(chapterPathKeys) } });
   if (chapterSlugs.size > 0) or.push({ slug: { $in: Array.from(chapterSlugs) } });
   
-  // Search by chapter name (case-insensitive partial match)
-  if (chapterNames.size > 0) {
-    const nameArray = Array.from(chapterNames);
-    or.push({
-      $or: nameArray.map(name => ({
-        name: { $regex: new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') }
-      }))
-    });
-  }
+  const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Search by chapter name (case-insensitive partial match) - i18n name: {en, hi}
+if (chapterNames.size > 0) {
+  const nameArray = Array.from(chapterNames)
+    .map((n) => n?.trim?.())
+    .filter(Boolean)
+    .map(escapeRegex);
+
+  or.push({
+    $or: nameArray.flatMap((name) => [
+      { 'name.en': { $regex: new RegExp(name, 'i') } },
+      { 'name.hi': { $regex: new RegExp(name, 'i') } },
+    ]),
+  });
+}
+
 
   if (or.length > 0) chapterQuery.$or = or;
   else chapterQuery.slug = { $in: [] };
@@ -170,12 +178,19 @@ const buildReferenceMaps = async (dataset: any[]): Promise<ReferenceMaps> => {
       chaptersBySlug[s].push(c);
     }
 
-    // Index by name (normalized)
-    const name = String(c?.name ?? '').trim().toLowerCase();
-    if (name) {
-      if (!chaptersByName[name]) chaptersByName[name] = [];
-      chaptersByName[name].push(c);
-    }
+    // Index by i18n name.en + name.hi (normalized)
+const enName = String(c?.name?.en ?? '').trim().toLowerCase();
+if (enName) {
+  if (!chaptersByName[enName]) chaptersByName[enName] = [];
+  chaptersByName[enName].push(c);
+}
+
+const hiName = String(c?.name?.hi ?? '').trim().toLowerCase();
+if (hiName) {
+  if (!chaptersByName[hiName]) chaptersByName[hiName] = [];
+  chaptersByName[hiName].push(c);
+}
+
   }
 
   return {

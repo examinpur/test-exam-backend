@@ -171,9 +171,7 @@ const bulkCreateQuestion = async (req: Request, res: Response) => {
       const fs = await import('fs');
       zipBuffer = fs.readFileSync(zipFilePath);
     }
-    // const data = await parseQuestionFile(jsonFilePath);
-   const normalized = normalizeBulkUpload(data);
-    const result = await bulkCreateQuestions(normalized, zipBuffer);
+   const result = await bulkCreateQuestions(data, zipBuffer);
 
     if (jsonFilePath) cleanupFile(jsonFilePath);
     if (zipFilePath) cleanupFile(zipFilePath);
