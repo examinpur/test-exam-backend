@@ -26,13 +26,8 @@ const chunkArray = <T>(arr: T[], size: number) => {
   return out;
 };
 
-/**
- * Get and increment the global question counter
- * Returns the next question number (count + 1)
- */
 const getNextQuestionId = async (): Promise<number> => {
   try {
-    // Use a fixed document ID or findOne without conditions to get/create single counter
     const counter = await questionCounterModel.findOneAndUpdate(
       {},
       { $inc: { count: 1 } },
@@ -45,15 +40,9 @@ const getNextQuestionId = async (): Promise<number> => {
   }
 };
 
-/**
- * Map examGroup to board slug
- * examGroup "jee" -> board slug "jee"
- * examGroup "medical" -> board slug "medical"
- */
 const getBoardSlugFromExamGroup = (examGroup: string): string => {
   const normalized = String(examGroup ?? '').trim().toLowerCase();
-  // examGroup and board slug are the same for jee and medical
-  return normalized || 'jee'; // default to jee
+  return normalized || 'jee';
 };
 
 const buildChapterPathKey = (q: any, subjectCtx?: any): string | null => {
@@ -86,7 +75,6 @@ const buildReferenceMaps = async (dataset: any[]): Promise<ReferenceMaps> => {
   const topicSlugs = new Set<string>();
   const paperSlugs = new Set<string>();
 
-  // Collect all unique board/exam/subject combinations from questions
   const boardExamSubjectCombos = new Set<string>();
 
   for (const subject of dataset) {
@@ -97,17 +85,14 @@ const buildReferenceMaps = async (dataset: any[]): Promise<ReferenceMaps> => {
       const chapterSlug = generateSlug(q?.chapter ?? q?.chapterSlug);
       if (chapterSlug) chapterSlugs.add(chapterSlug);
 
-      // Also collect chapter names for searching
       const chapterName = q?.chapterNameForSearch || q?.chapter;
       if (chapterName && typeof chapterName === 'string') {
         const cleanName = chapterName.trim();
         if (cleanName) chapterNames.add(cleanName);
-        // Also try generating slug from name for matching
         const nameSlug = generateSlug(cleanName);
         if (nameSlug) chapterSlugs.add(nameSlug);
       }
 
-      // Collect board/exam/subject combinations for filtering
       const examGroup = q?.examGroup ?? subject?.examGroup;
       const boardSlug = examGroup ? getBoardSlugFromExamGroup(examGroup) : null;
       const examSlug = generateSlug(q?.exam ?? q?.examSlug ?? subject?.exam ?? subject?.examSlug);
@@ -134,7 +119,6 @@ const buildReferenceMaps = async (dataset: any[]): Promise<ReferenceMaps> => {
   
   const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-// Search by chapter name (case-insensitive partial match) - i18n name: {en, hi}
 if (chapterNames.size > 0) {
   const nameArray = Array.from(chapterNames)
     .map((n) => n?.trim?.())
@@ -167,8 +151,6 @@ if (chapterNames.size > 0) {
   const chaptersBySlug: Record<string, any[]> = {};
   const chaptersByName: Record<string, any[]> = {};
 
-  // Include ALL chapters that match by slug or name - don't filter by subject here
-  // The filtering will happen in resolveChapter when narrowing down candidates
   for (const c of chapters as any[]) {
     if (c?.pathKey) chaptersByPathKey[String(c.pathKey)] = c;
 
@@ -177,8 +159,6 @@ if (chapterNames.size > 0) {
       if (!chaptersBySlug[s]) chaptersBySlug[s] = [];
       chaptersBySlug[s].push(c);
     }
-
-    // Index by i18n name.en + name.hi (normalized)
 const enName = String(c?.name?.en ?? '').trim().toLowerCase();
 if (enName) {
   if (!chaptersByName[enName]) chaptersByName[enName] = [];
@@ -258,7 +238,6 @@ const buildLocalizedPrompt = (
 const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
   const chapterKey = q?.pathKey ? String(q.pathKey) : buildChapterPathKey(q, subjectCtx);
 
-  // Try pathKey first
   if (chapterKey && refs.chaptersByPathKey[chapterKey]) {
     const chapter = refs.chaptersByPathKey[chapterKey];
     return { 
@@ -272,21 +251,17 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
   const chapterSlug = generateSlug(q?.chapter ?? q?.chapterSlug);
   let candidates: any[] = [];
 
-  // Try slug search
   if (chapterSlug) {
     candidates = refs.chaptersBySlug[chapterSlug] || [];
   }
 
-  // If no candidates found by slug, try searching by name
   if (candidates.length === 0) {
     const chapterName = q?.chapterNameForSearch || q?.chapter;
     if (chapterName && typeof chapterName === 'string') {
       const cleanName = chapterName.trim().toLowerCase();
       if (cleanName) {
-        // Try exact match first
         candidates = refs.chaptersByName[cleanName] || [];
         
-        // If no exact match, try partial match
         if (candidates.length === 0) {
           for (const [name, chapters] of Object.entries(refs.chaptersByName)) {
             if (name.includes(cleanName) || cleanName.includes(name)) {
@@ -299,7 +274,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
     }
   }
 
-  // If still no candidates, return null but don't fail
   if (candidates.length === 0) {
     return { 
       chapter: null, 
@@ -309,8 +283,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
     };
   }
 
-  // Single candidate found - verify it matches the board/exam combination
-  // Note: We allow subject mismatch because metadata might have wrong subject
   if (candidates.length === 1) {
     const chapter = candidates[0];
     const examGroup = q?.examGroup ?? subjectCtx?.examGroup;
@@ -319,7 +291,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
       : generateSlug(q?.boardSlug ?? subjectCtx?.boardSlug);
     const wantExam = generateSlug(q?.exam ?? subjectCtx?.exam ?? q?.examSlug ?? subjectCtx?.examSlug);
     
-    // Verify the chapter matches the expected board/exam (subject can differ)
     const matches = (
       (!wantBoard || generateSlug(chapter?.boardSlug) === wantBoard) &&
       (!wantExam || generateSlug(chapter?.examSlug) === wantExam)
@@ -333,7 +304,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
         missing: [] as string[] 
       };
     } else {
-      // Chapter doesn't match the expected board/exam
       return {
         chapter: null,
         chapterKey,
@@ -345,8 +315,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
     }
   }
 
-  // Multiple candidates - try to narrow down by examGroup (mapped to board), exam
-  // Note: We don't filter by subject because metadata might have wrong subject
   if (candidates.length > 1) {
     const examGroup = q?.examGroup ?? subjectCtx?.examGroup;
     const wantBoard = examGroup 
@@ -354,7 +322,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
       : generateSlug(q?.boardSlug ?? subjectCtx?.boardSlug);
     const wantExam = generateSlug(q?.exam ?? subjectCtx?.exam ?? q?.examSlug ?? subjectCtx?.examSlug);
   
-    // First try exact match with board and exam
     let narrowed = candidates.filter((c: any) => {
       return (
         generateSlug(c?.boardSlug) === wantBoard &&
@@ -371,8 +338,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
         missing: [] as string[] 
       };
     }
-  
-    // If multiple matches for board/exam, try to match subject too
     if (narrowed.length > 1) {
       const wantSub = generateSlug(q?.subject ?? subjectCtx?.subject ?? q?.subjectSlug ?? subjectCtx?.subjectSlug);
       const subjectNarrowed = narrowed.filter((c: any) => 
@@ -388,8 +353,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
           missing: [] as string[] 
         };
       }
-      
-      // If still multiple, use first match
       if (subjectNarrowed.length > 0) {
         const chapter = subjectNarrowed[0];
         return { 
@@ -401,7 +364,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
       }
     }
   
-    // If we have narrowed candidates (board/exam match), use first one
     if (narrowed.length > 0) {
       const chapter = narrowed[0];
       return { 
@@ -412,7 +374,6 @@ const resolveChapter = (q: any, refs: ReferenceMaps, subjectCtx?: any) => {
       };
     }
     
-    // If no match found for the specific board/exam, return null
     return {
       chapter: null,
       chapterKey,
@@ -440,7 +401,6 @@ const buildQuestionSlugAndPath = (args: {
   const { q, chapter, questionId } = args;
   const topicSlug = args.topicSlug ? generateSlug(args.topicSlug) : undefined;
 
-  // Use generated questionId if provided, otherwise fallback to JSON question_id or generate from content
   const questionSlug = questionId !== undefined
     ? `q${questionId.toString().padStart(6, '0')}`
     : generateSlug(q?.question_id) ||
@@ -509,9 +469,7 @@ const mapQuestionToPayload = async (
       missing: chapterMissing 
     };
   }
-  
-  // Update chapterGroup from resolved chapter if not already set
-  if (chapterGroup && !q.chapterGroup) {
+    if (chapterGroup && !q.chapterGroup) {
     q.chapterGroup = chapterGroup;
   }
 
